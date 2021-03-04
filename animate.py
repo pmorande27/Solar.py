@@ -6,27 +6,33 @@ import math
 from matplotlib.animation import FuncAnimation
 from Planets import Planet
 
-
 class animation(object):
     def __init__(self, planets):
         self.planets = planets
-        print(len(self.planets))
+        self.kinetic = 0
 
     def init(self):
         # initialiser for animator
         return self.patches
 
     def animate(self, i):
+        self.kinetic =0 
 
         for k in range(len(self.planets)):
             others = self.planets[:]
             self.planet = others.pop(k)
+            self.planet.update_acceleration(others)
+            self.planet.update_velocity()
 
-            self.planet.update_position(others)
-
+        for k in range(len(self.planets)):
+            others = self.planets[:]
+            self.planet = others.pop(k)
+            self.planet.update_position()
+            self.kinetic += self.planet.mass*0.5*self.planet.velocity.mdoulus()**2
             # update the position of the circle
+        print(self.kinetic)
         for j in range(len(self.planets)):
-            self.patches[j].center = (self.planets[j].position[0], self.planets[j].position[1])
+            self.patches[j].center = (self.planets[j].position.get_x(), self.planets[j].position.get_y())
         return self.patches
 
     def plot(self):
@@ -48,7 +54,7 @@ class animation(object):
 
         colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
         for planet in range(len(self.planets)):
-            a = plt.Circle((self.planets[planet].position[0], self.planets[planet].position[1]),
+            a = plt.Circle((self.planets[planet].position.get_x(), self.planets[planet].position.get_y()),
                            self.planets[planet].simulated_radius, color=colors[planet], animated=True)
             self.patches.append(a)
 
@@ -56,6 +62,6 @@ class animation(object):
         for i in range(len(self.patches)):
             ax.add_patch(self.patches[i])
 
-        anim = FuncAnimation(fig, self.animate, init_func=self.init, frames=1000, repeat=False, interval=50, blit=True)
+        anim = FuncAnimation(fig, self.animate, init_func=self.init, frames=10000, repeat=False, interval=50, blit=True)
 
         plt.show()

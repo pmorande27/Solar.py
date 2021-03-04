@@ -16,9 +16,12 @@ class Vector(object):
     def mdoulus(self): 
         return math.sqrt(self.value_x**2+ self.value_y**2)
     @staticmethod
-       
     def distance(vector1, vector2):
-        result = Vector (vector2.get_x - vector1.get_x, vector2.get_y - vector1.get_y)
+        result = Vector (vector2.get_x() - vector1.get_x(), vector2.get_y() - vector1.get_y())
         return result
-
-        
+    def __truediv__(self,scalar):
+        return Vector(self.value_x/scalar,self.value_y/scalar)
+    def __mul__(self,scalar):
+        return Vector(self.value_x*scalar,self.value_y*scalar)
+    def __iadd__(self,vector):
+        return Vector(self.value_x + vector.value_x, self.value_y+vector.value_y)

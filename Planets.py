@@ -1,46 +1,32 @@
-def magnitude(vector):
-    result = (vector[0] ** 2 + vector[1] ** 2) ** 0.5
-    return result
-
-
-def distance(vector1, vector2):
-    result = [vector2[0] - vector1[0], vector2[1] - vector1[1]]
-    return result
-
-
-G = 6.67 * 10 ** -11
+from vector import Vector
+G = 6.67408 * 10 ** -11
 time_step = 100
-
-
 class Planet(object):
 
-    def __init__(self, name, mass, position_x, position_y, velocity_x, velocity_y, acceleration_x, acceleration_y,
-                 orbital_radius, simulated_radius):
+    def __init__(self, name, mass, orbital_radius, simulated_radius,type_of_object,central_mass):
         self.name = name
         self.mass = mass
-        self.position = [position_x, position_y]
-        self.velocity = [velocity_x, velocity_y]
-        self.acceleration = [acceleration_x, acceleration_y]
-        self.orbital_radius = orbital_radius
+        if type_of_object == "Planet":
+            self.position = Vector(0,0)
+            self.velocity = Vector(0,0)
+        elif type_of_object == "Moon":
+            self.position = Vector(orbital_radius,0)
+            self.velocity = Vector(0,(G*central_mass/orbital_radius)**0.5)
+        self.acceleration = Vector(0, 0)
         self.simulated_radius = simulated_radius
 
-    def update_position(self, others):
-        self.update_acceleration(others)
-        for i in range(2):
-            self.velocity[i] += self.acceleration[i] * time_step
-            self.position[i] += self.velocity[i] * time_step
-        print(self.velocity)
-
+    def update_position(self):
+        self.position += self.velocity * time_step
+    def update_velocity(self):
+        self.velocity += self.acceleration * time_step
     def update_acceleration(self, others):
-        self.acceleration = [0, 0]
+        self.acceleration = Vector(0,0)
         for i in range(len(others)):
             planet2 = others[i]
-            for j in range(2):
-                vector1 = self.position
-                vector2 = planet2.position
-                distances = distance(vector1, vector2)
-                self.acceleration[j] += (others[i].mass * G / magnitude(distances) ** 2) * (
-                        distances[j] / magnitude(distances))
+            vector1 = self.position
+            vector2 = planet2.position
+            distances = Vector.distance(vector1, vector2)
+            self.acceleration += (distances/ distances.mdoulus()) * (others[i].mass * G / (distances.mdoulus()**2)) 
 
 
 
