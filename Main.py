@@ -2,6 +2,9 @@ from animate import animation
 from Planets import Planet
 import numpy as np
 def inputFiles(nameofFile):
+    """
+    Method used to read the planets/moons from a text file
+    """
     planets = []
     file = open(nameofFile,"r")
     for line in file:
@@ -10,12 +13,14 @@ def inputFiles(nameofFile):
         planets.append(planet)
     return planets
 def main():
-
-    b = Planet("marte", 6.4185*10**23,0, 500000,"Planet",0)
-    e = Planet("phobos",1.06*10**16,9377300.0,500000,"Moon",6.4185*10**23)
-    f = Planet("deimos",1.8*10**15,23.463*10**6,500000,"Moon",6.4185*10**23)
+    """
+    Main function
+    """
+    #mars = Planet("marte", 6.4185*10**23,0, 500000,"Planet",0)
+    #phobos= Planet("phobos",1.06*10**16,9377300.0,500000,"Moon",6.4185*10**23)
+    #deimos = Planet("deimos",1.8*10**15,23.463*10**6,500000,"Moon",6.4185*10**23)
     d =inputFiles("CelestialObjects")
-    a = animation(d)
-    a.plot()
+    animate = animation(d)
+    animate.plot()
 main()
 

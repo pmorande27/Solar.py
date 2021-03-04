@@ -26,14 +26,20 @@ class Planet(object):
 
     def update_position(self):
         """
-        Method used to update position using 
+        Method used to update position using Euler integration method
         """
         self.position += self.velocity * time_step
 
     def update_velocity(self):
+        """
+        Method used to update velocity using Euler integration method
+        """
         self.velocity += self.acceleration * time_step
 
     def update_acceleration(self, others):
+        """
+        Method used to update acceleration by adding the acceleration due to the gravitational force between the different bodies
+        """
         self.acceleration = Vector(0,0)
         for i in range(len(others)):
             planet2 = others[i]
