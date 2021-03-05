@@ -20,7 +20,7 @@ def main():
     #phobos= Planet("phobos",1.06*10**16,9377300.0,500000,"Moon",6.4185*10**23)
     #deimos = Planet("deimos",1.8*10**15,23.463*10**6,500000,"Moon",6.4185*10**23)
     d =inputFiles("CelestialObjects")
-    animate = animation(d)
+    animate = animation(d,100)
     animate.plot()
 main()
 

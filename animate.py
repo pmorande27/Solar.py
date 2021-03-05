@@ -6,16 +6,18 @@ import math
 from matplotlib.animation import FuncAnimation
 from Planets import Planet
 
+
+
 class animation(object):
     """
     Class used to create the animation of Mars, Deimos and Phobos
     """
-    def __init__(self, planets):
+    def __init__(self, planets,time_step):
         """
         Constructor of the class, it initizalizes the array of planets/celestial bodies
         """
         self.planets = planets
-        self.kinetic = 0
+        self.time_step = time_step
 
     def init(self):
         # initialiser for animator
@@ -25,24 +27,7 @@ class animation(object):
         """
         Main function of the class, it iterates over the planets and it updates the position of all of them, it will add those new positions to the animation (patches)
         """
-        self.kinetic =0 
-
-        #Update acceleration and velocity of all planets from time step t-1 to timestep t
-        for k in range(len(self.planets)):
-            others = self.planets[:]
-            self.planet = others.pop(k)
-            self.planet.update_acceleration(others)
-            self.planet.update_velocity()
-
-        #Update position of all planets from time step t-1 to timestep t
-        for k in range(len(self.planets)):
-            others = self.planets[:]
-            self.planet = others.pop(k)
-            self.planet.update_position()
-            self.kinetic += self.planet.mass*0.5*self.planet.velocity.mdoulus()**2
-
-        print(self.kinetic)
-
+        Planet.updatePlanets(self.planets,self.time_step)
         # update the position of the circle
         for j in range(len(self.planets)):
             self.patches[j].center = (self.planets[j].position.get_x(), self.planets[j].position.get_y())
@@ -59,7 +44,6 @@ class animation(object):
         xmax = 4 * 10 ** 7
         ymin = - 4 * 10 ** 7
         ymax = 4 * 10 ** 7
-        ax.axis('scaled')
         ax.set_xlim(xmin - 1, xmax)
         ax.set_ylim(ymin - 1, ymax)
         self.patches = []
@@ -76,6 +60,7 @@ class animation(object):
             ax.add_patch(self.patches[i])
 
         # Create animation
-        anim = FuncAnimation(fig, self.animate, init_func=self.init, frames=10000, repeat=False, interval=50, blit=True)
-
+        anim = FuncAnimation(fig, self.animate, init_func=self.init, frames=10000, repeat=False, interval=100, blit=True)
+        plt.xlabel('x')
+        plt.ylabel('y')
         plt.show()
