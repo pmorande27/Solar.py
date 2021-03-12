@@ -4,20 +4,16 @@ import matplotlib.patches as patches
 import numpy as np
 import math
 from matplotlib.animation import FuncAnimation
-from Planets import Planet
-
-
-
 class animation(object):
     """
     Class used to create the animation of Mars, Deimos and Phobos
     """
-    def __init__(self, planets,time_step):
+    def __init__(self, SolarSystem):
         """
         Constructor of the class, it initizalizes the array of planets/celestial bodies
         """
-        self.planets = planets
-        self.time_step = time_step
+        self.System = SolarSystem
+        self.updates = 0
 
     def init(self):
         # initialiser for animator
@@ -27,10 +23,13 @@ class animation(object):
         """
         Main function of the class, it iterates over the planets and it updates the position of all of them, it will add those new positions to the animation (patches)
         """
-        Planet.updatePlanets(self.planets,self.time_step)
+        self.System.update_beeman()
+        self.updates+=1
+        #print(self.updates)
+        planets = self.System.celestial_bodies
         # update the position of the circle
-        for j in range(len(self.planets)):
-            self.patches[j].center = (self.planets[j].position.get_x(), self.planets[j].position.get_y())
+        for j in range(len( planets)):
+            self.patches[j].center = (planets[j].position.get_x(), planets[j].position.get_y())
         return self.patches
 
     def plot(self):
@@ -40,19 +39,19 @@ class animation(object):
         # set up plot
         fig = plt.figure()
         ax = plt.axes()
-        xmin = - 4 * 10 ** 7
-        xmax = 4 * 10 ** 7
-        ymin = - 4 * 10 ** 7
-        ymax = 4 * 10 ** 7
+        xmin = - 3 * 10 ** 11
+        xmax = 3 * 10 ** 11
+        ymin = - 3 * 10 ** 11
+        ymax = 3 * 10 ** 11
         ax.set_xlim(xmin - 1, xmax)
         ax.set_ylim(ymin - 1, ymax)
         self.patches = []
         colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
-
+        planets = self.System.celestial_bodies
         #Get position of the planets and assing it to the circles.
-        for planet in range(len(self.planets)):
-            a = plt.Circle((self.planets[planet].position.get_x(), self.planets[planet].position.get_y()),
-                           self.planets[planet].simulated_radius, color=colors[planet], animated=True)
+        for planet in range(len(planets)):
+            a = plt.Circle((planets[planet].position.get_x(), planets[planet].position.get_y()),
+                           planets[planet].simulated_radius, color=colors[planet], animated=True)
             self.patches.append(a)
 
         # add circles to axes
@@ -60,7 +59,7 @@ class animation(object):
             ax.add_patch(self.patches[i])
 
         # Create animation
-        anim = FuncAnimation(fig, self.animate, init_func=self.init, frames=10000, repeat=False, interval=100, blit=True)
+        anim = FuncAnimation(fig, self.animate, init_func=self.init, frames=10000000000, repeat=False, interval=0.00000001, blit=True)
         plt.xlabel('x')
         plt.ylabel('y')
         plt.show()

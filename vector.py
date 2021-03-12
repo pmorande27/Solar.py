@@ -57,3 +57,8 @@ class Vector(object):
         Overridden + operator for addition.
         """
         return Vector(self.value_x + vector.value_x, self.value_y+vector.value_y)
+    def __sub__(self,vector):
+        """
+        Overridden + operator for addition.
+        """
+        return Vector(self.value_x - vector.value_x, self.value_y-vector.value_y)

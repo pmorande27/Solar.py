@@ -1,26 +1,33 @@
 from animate import animation
 from Planets import Planet
+from SolarSystem import SolarSystem
 import numpy as np
-def inputFiles(nameofFile):
-    """
-    Method used to read the planets/moons from a text file
-    """
-    planets = []
-    file = open(nameofFile,"r")
-    for line in file:
-        parsedInfo = line.split(",")
-        planet = Planet(parsedInfo[0],float(parsedInfo[1]),float(parsedInfo[2]),float(parsedInfo[3]),parsedInfo[4],float(parsedInfo[5]))
-        planets.append(planet)
-    return planets
+import matplotlib.pyplot as plt
+
+
 def main():
     """
     Main function
     """
-    #mars = Planet("marte", 6.4185*10**23,0, 500000,"Planet",0)
-    #phobos= Planet("phobos",1.06*10**16,9377300.0,500000,"Moon",6.4185*10**23)
-    #deimos = Planet("deimos",1.8*10**15,23.463*10**6,500000,"Moon",6.4185*10**23)
-    d =inputFiles("CelestialObjects")
-    animate = animation(d,100)
+    system = SolarSystem(1000)
+    animate = animation(system)
     animate.plot()
+    #EnergyGraphComparisson()
+
+def EnergyGraphComparisson():
+    system = SolarSystem(1000)
+    energy_1 = [system.getEnergy()]
+    system2 = SolarSystem(1000)
+    energy_2 = [system2.getEnergy()]
+    iterate = 100000
+    iterations = [i for i in range(iterate+1)]
+    for i in range(iterate):
+        print(i)
+        energy_1.append(system.update_beeman())
+        energy_2.append(system2.update_euler())
+    plt.plot(iterations,energy_1,iterations,energy_2)
+    plt.show()
+
+
 main()
 
