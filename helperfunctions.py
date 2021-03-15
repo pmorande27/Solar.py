@@ -6,7 +6,8 @@ def writeFile():
     Venus = Planet("Venus",4.867 *10**24 ,108200000*10**3,2*500000000,"Planet",1.989 * 10**30)
     earth = Planet("Earth",5.972 *10**24,149597870.691*10**3,2*500000000,"Planet",1.989 * 10**30)
     mars = Planet("Mars",6.39 *10**23,228 *10**9,2*500000000,"Planet",1.989 * 10**30)
-    d =[sun,mercury,Venus,earth,mars]
+    Probe = Planet("Probe",1,149597870.691*10**3+6.02*10**6,2*500000000,"Probe",1.989 * 10**30)
+    d =[sun,mercury,Venus,earth,mars,Probe]
     data = {}
     data['Star'] = []
     data['Star'].append({ "Name" : "Sun",

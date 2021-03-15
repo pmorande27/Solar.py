@@ -18,10 +18,8 @@ class SolarSystem(object):
         planets = []
         with open("CelestialObjects") as json_file:
             data = json.load(json_file)
-            center_mass = 0
             for star in data['Star']:
                 planets.append(Planet(star['Name'],float(star['mass']),float(star['orbital_radius']),float(star['simulated_radius']),star['type'],0))
-                center_mass = float(star['mass'])
             for planet in data['Planets']:
                 planets.append(Planet(planet['Name'],float(planet['mass']),float(planet['orbital_radius']),float(planet['simulated_radius']),planet['type'],float(star['mass'])))
         return planets
@@ -51,7 +49,6 @@ class SolarSystem(object):
             planet = others.pop(k)
             planet.update_velocity_beeman(self.time_step,others)
             kinetic += planet.mass*0.5*planet.velocity.mdoulus()**2
-        potential = self.getPotentialEnergy()
         energy = self.getEnergy()
         #print(energy)
         self.file.write(str(energy)+"\n")
@@ -76,7 +73,6 @@ class SolarSystem(object):
             planet = others.pop(k)
             planet.update_position_euler(self.time_step)
             kinetic += planet.mass*0.5*planet.velocity.mdoulus()**2
-        potential = self.getPotentialEnergy()
         energy = self.getEnergy()
         #print(energy)
         #self.file.write(str(energy)+"\n")
@@ -105,7 +101,7 @@ class SolarSystem(object):
     def EnergyGraph(self,iteration):
         energy = []
         number = [i for i in range(iteration)]
-        for i in range(iteration):
+        for j in range(iteration):
             energy.append(self.update_beeman())
         plt.plot(number,energy)
         plt.show()            

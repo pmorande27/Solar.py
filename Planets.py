@@ -2,6 +2,7 @@ from vector import Vector
 import matplotlib.pyplot as plt
 class Planet(object):
     G = 6.67408 * 10 ** -11
+    vRelative = 3000*1.5
 
     def __init__(self, name, mass, orbital_radius, simulated_radius,type_of_object,central_mass):
         """
@@ -24,6 +25,9 @@ class Planet(object):
             self.velocity = Vector(0,(Planet.G*central_mass/orbital_radius)**0.5)
             self.sign = 1
         # Set-up acceleration and radius
+        elif type_of_object == "Probe":
+            self.position = Vector(orbital_radius,0)
+            self.velocity = Vector(0,30000+Planet.vRelative)
         self.acceleration = Vector(0, 0)
         self.acceleration_prev = Vector(0,0)
         self.simulated_radius = simulated_radius
@@ -54,7 +58,7 @@ class Planet(object):
             self.sign = self.get_y_sign()
             if(previous<self.sign):
                 time = self.time/(3600*24)
-                print("Orbital Period of "+ self.name + " is "+ str(time))
+                print("Orbital Period of "+ self.name + " is "+ str(time)+" days")
                 self.time = 0
             else:
                 self.time += time_step
@@ -62,7 +66,7 @@ class Planet(object):
 
     def update_velocity_beeman(self,time_step,others):
         """
-        Method used to update velocity using Euler integration method
+        Method used to update velocity using Beeman integration method
         """
         acceleration_current = self.acceleration
         self.update_acceleration(others)

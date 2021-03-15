@@ -3,13 +3,15 @@ from Planets import Planet
 from SolarSystem import SolarSystem
 import numpy as np
 import matplotlib.pyplot as plt
+from helperfunctions import writeFile
 
 
 def main():
     """
     Main function
     """
-    system = SolarSystem(1000)
+    writeFile()
+    system = SolarSystem(10000/5)
     animate = animation(system)
     animate.plot()
     #EnergyGraphComparisson()
