@@ -97,11 +97,4 @@ class SolarSystem(object):
                 distances = Vector.distance(vector1, vector2)
                 distance = distances.mdoulus()
                 potential += -SolarSystem.G*body_one.mass*body_two.mass/distance
-        return potential
-    def EnergyGraph(self,iteration):
-        energy = []
-        number = [i for i in range(iteration)]
-        for j in range(iteration):
-            energy.append(self.update_beeman())
-        plt.plot(number,energy)
-        plt.show()            
+        return potential         
