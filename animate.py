@@ -14,6 +14,25 @@ class animation(object):
         """
         self.System = SolarSystem
         self.updates = 0
+    def scatterplot(self,maxUpdates):
+        positions = [[] for x in range(len(self.System.celestial_bodies))]
+        ax = plt.axes()
+        xmin = - 3 * 10 ** 11
+        xmax = 3 * 10 ** 11
+        ymin = - 3 * 10 ** 11
+        ymax = 3 * 10 ** 11
+        ax.set_xlim(xmin - 1, xmax)
+        ax.set_ylim(ymin - 1, ymax)
+        for updates in range(maxUpdates):
+            self.System.update_beeman()
+            planets = self.System.celestial_bodies
+            for i in range(len(planets)):
+                positions[i].append((planets[i].position.get_x(),planets[i].position.get_y()))
+        for j in range(len(positions)):
+            position_x,position_y = zip(*positions[j])
+            plt.plot(position_x,position_y)
+        plt.show()
+
 
     def init(self):
         # initialiser for animator
@@ -39,10 +58,10 @@ class animation(object):
         # set up plot
         fig = plt.figure()
         ax = plt.axes()
-        xmin = - 3 * 10 ** 11
-        xmax = 3 * 10 ** 11
-        ymin = - 3 * 10 ** 11
-        ymax = 3 * 10 ** 11
+        xmin = - 4 * 10 ** 11
+        xmax = 4 * 10 ** 11
+        ymin = - 4 * 10 ** 11
+        ymax = 4 * 10 ** 11
         ax.set_xlim(xmin - 1, xmax)
         ax.set_ylim(ymin - 1, ymax)
         self.patches = []
@@ -59,7 +78,7 @@ class animation(object):
             ax.add_patch(self.patches[i])
 
         # Create animation
-        anim = FuncAnimation(fig, self.animate, init_func=self.init, frames=10000000000, repeat=False, interval=0.00000001, blit=True)
+        anim = FuncAnimation(fig, self.animate, init_func=self.init, frames=10000000, repeat=False, interval=0, blit=True)
         plt.xlabel('x')
         plt.ylabel('y')
         plt.show()

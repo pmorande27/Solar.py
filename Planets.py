@@ -1,10 +1,10 @@
 from vector import Vector
 import matplotlib.pyplot as plt
+import math
 class Planet(object):
     G = 6.67408 * 10 ** -11
-    vRelative = 3000*1.5
 
-    def __init__(self, name, mass, orbital_radius, simulated_radius,type_of_object,central_mass):
+    def __init__(self, name, mass, orbital_radius, simulated_radius,type_of_object,central_mass,vRelative):
         """
         Constructor of the class used to initziled important fields such as the mass, the position, acceleration and velocity of the object.
         """
@@ -26,8 +26,8 @@ class Planet(object):
             self.sign = 1
         # Set-up acceleration and radius
         elif type_of_object == "Probe":
-            self.position = Vector(orbital_radius,0)
-            self.velocity = Vector(0,30000+Planet.vRelative)
+            self.position = Vector(orbital_radius,6.02*10**6)
+            self.velocity = Vector(0,29.8*10**3+vRelative)
         self.acceleration = Vector(0, 0)
         self.acceleration_prev = Vector(0,0)
         self.simulated_radius = simulated_radius
@@ -68,9 +68,13 @@ class Planet(object):
         """
         Method used to update velocity using Beeman integration method
         """
-        acceleration_current = self.acceleration
+        acceleration_current = self.acceleration.__copy__()
         self.update_acceleration(others)
-        self.velocity += (self.acceleration*2+acceleration_current*5-self.acceleration_prev)*time_step/6
+        c = self.acceleration*2
+        d = acceleration_current*5
+        f = self.acceleration_prev*-1
+        a = (self.acceleration*2+acceleration_current*5-self.acceleration_prev)*time_step/6
+        self.velocity += a
         self.acceleration_prev = acceleration_current
 
     def update_acceleration(self, others):
