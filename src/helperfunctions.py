@@ -1,4 +1,4 @@
-from Planets import Planet
+from Planet import Planet
 import json
 def writeFile():
     sun = Planet("Sun",1.989 * 10**30,0,3*500000000,"Star",0,0)

@@ -1,5 +1,5 @@
 import json
-from Planets import Planet
+from Planet import Planet
 from vector import Vector
 
 

@@ -1,5 +1,5 @@
 from animate import animation
-from Planets import Planet
+from Planet import Planet
 from SolarSystem import SolarSystem
 import numpy as np
 import matplotlib
