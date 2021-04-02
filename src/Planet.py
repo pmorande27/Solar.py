@@ -33,7 +33,8 @@ class Planet(object):
         # Case for orbiting objects
         elif type_of_object == "Planet":
             self.position = Vector(orbital_radius, 0)
-            self.velocity = Vector(0, (Planet.G * central_mass / orbital_radius) ** 0.5)
+            velocity = Planet.G * central_mass / orbital_radius) ** 0.5
+            self.velocity =self.getInitialVelocity(position,velocity)
             self.sign = 1
         # Case for the Probe
         elif type_of_object == "Probe":
@@ -44,7 +45,7 @@ class Planet(object):
         self.acceleration_prev = Vector(0, 0)
         self.simulated_radius = simulated_radius
     
-    def getInitialVelocity(position,velocity):
+    def getInitialVelocity(self,position,velocity):
         unit_position = position/position.mdoulus()
         unit_tangent = Vector(-unit_position.get_y(),unit_position.get_x())
         return unit_tangent*velocity
