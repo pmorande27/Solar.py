@@ -8,8 +8,6 @@ class Planet(object):
 
     def __init__(self, name, mass, orbital_radius, simulated_radius, type_of_object, central_mass, vRelative):
         """Constructor of the class used to initsile important fields such as the mass, the position, acceleration and velocity of the object.
-
-
         Args:
             name (string): Name of the Celestial body
             mass (float): mass of the Celestial body
