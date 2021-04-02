@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module vector</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>vector</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Cpablo%20morand%C3%A9%5Cdesktop%5Ccomputer%20simulation%5Cproject%5Cplanet_orbital_motion_simualtion%5Cvector.py">c:\users\pablo morandé\desktop\computer simulation\project\planet_orbital_motion_simualtion\vector.py</a></font></td></tr></table>
+    <p><tt>Created&nbsp;on&nbsp;Wed&nbsp;Sep&nbsp;30&nbsp;17:33:33&nbsp;2020<br>
+&nbsp;<br>
+@author:&nbsp;Pablo&nbsp;Morandé</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="math.html">math</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="vector.html#Vector">Vector</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Vector">class <strong>Vector</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Vector">Vector</a>(value_x,&nbsp;value_y)<br>
+&nbsp;<br>
+Class&nbsp;used&nbsp;to&nbsp;represent&nbsp;2D&nbsp;real&nbsp;vectors<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Vector-__add__"><strong>__add__</strong></a>(self, vector)</dt><dd><tt>Overridden&nbsp;+&nbsp;operator&nbsp;for&nbsp;addition.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;vector&nbsp;(<a href="#Vector">Vector</a>):&nbsp;<a href="#Vector">Vector</a>&nbsp;to&nbsp;be&nbsp;added<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Vector">Vector</a>:&nbsp;New&nbsp;<a href="#Vector">Vector</a>&nbsp;result&nbsp;of&nbsp;adding&nbsp;the&nbsp;two&nbsp;vectors</tt></dd></dl>
+
+<dl><dt><a name="Vector-__copy__"><strong>__copy__</strong></a>(self)</dt><dd><tt>Overridden&nbsp;method&nbsp;used&nbsp;to&nbsp;make&nbsp;a&nbsp;copy&nbsp;of&nbsp;a&nbsp;given&nbsp;vector<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Vector">Vector</a>:&nbsp;<a href="#Vector">Vector</a>&nbsp;with&nbsp;the&nbsp;same&nbsp;x,y&nbsp;components</tt></dd></dl>
+
+<dl><dt><a name="Vector-__iadd__"><strong>__iadd__</strong></a>(self, vector)</dt><dd><tt>Overridden&nbsp;+=&nbsp;operator&nbsp;for&nbsp;addition.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;vector&nbsp;(<a href="#Vector">Vector</a>):&nbsp;<a href="#Vector">Vector</a>&nbsp;to&nbsp;be&nbsp;added<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Vector">Vector</a>:&nbsp;New&nbsp;<a href="#Vector">Vector</a>&nbsp;result&nbsp;of&nbsp;adding&nbsp;the&nbsp;two&nbsp;vectors</tt></dd></dl>
+
+<dl><dt><a name="Vector-__init__"><strong>__init__</strong></a>(self, value_x, value_y)</dt><dd><tt>Constructor&nbsp;of&nbsp;the&nbsp;class,&nbsp;used&nbsp;to&nbsp;assign&nbsp;the&nbsp;value&nbsp;of&nbsp;x&nbsp;and&nbsp;y<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value_x&nbsp;(float):&nbsp;value&nbsp;of&nbsp;the&nbsp;component&nbsp;in&nbsp;the&nbsp;x&nbsp;direction<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value_y&nbsp;(float):&nbsp;value&nbsp;of&nbsp;the&nbsp;component&nbsp;in&nbsp;the&nbsp;t&nbsp;direction</tt></dd></dl>
+
+<dl><dt><a name="Vector-__mul__"><strong>__mul__</strong></a>(self, scalar)</dt><dd><tt>Overridden&nbsp;*&nbsp;operator&nbsp;for&nbsp;scalar&nbsp;multiplication<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;scalar&nbsp;(float):&nbsp;Number&nbsp;to&nbsp;multiply&nbsp;all&nbsp;the&nbsp;components&nbsp;by<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Vector">Vector</a>&nbsp;:&nbsp;New&nbsp;<a href="#Vector">Vector</a>&nbsp;afte&nbsp;multiplying&nbsp;all&nbsp;the&nbsp;components&nbsp;by&nbsp;scalar.</tt></dd></dl>
+
+<dl><dt><a name="Vector-__sub__"><strong>__sub__</strong></a>(self, vector)</dt><dd><tt>Overridden&nbsp;-&nbsp;operator&nbsp;for&nbsp;addition.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;vector&nbsp;(<a href="#Vector">Vector</a>):&nbsp;<a href="#Vector">Vector</a>&nbsp;to&nbsp;be&nbsp;added<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Vector">Vector</a>:&nbsp;New&nbsp;<a href="#Vector">Vector</a>&nbsp;result&nbsp;of&nbsp;substracting&nbsp;the&nbsp;two&nbsp;vectors</tt></dd></dl>
+
+<dl><dt><a name="Vector-__truediv__"><strong>__truediv__</strong></a>(self, scalar)</dt><dd><tt>Overridden&nbsp;/&nbsp;operator&nbsp;for&nbsp;scalar&nbsp;division<br>
+&nbsp;<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;scalar&nbsp;(float):&nbsp;Number&nbsp;to&nbsp;divide&nbsp;all&nbsp;the&nbsp;ocmponents&nbsp;by<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Vector">Vector</a>:&nbsp;New&nbsp;<a href="#Vector">Vector</a>&nbsp;after&nbsp;dividing&nbsp;by&nbsp;scalar&nbsp;all&nbsp;the&nbsp;components</tt></dd></dl>
+
+<dl><dt><a name="Vector-get_x"><strong>get_x</strong></a>(self)</dt><dd><tt>Method&nbsp;to&nbsp;retrieve&nbsp;the&nbsp;x&nbsp;value<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;float:&nbsp;value&nbsp;of&nbsp;the&nbsp;component&nbsp;in&nbsp;the&nbsp;x&nbsp;direction&nbsp;of&nbsp;a&nbsp;vector</tt></dd></dl>
+
+<dl><dt><a name="Vector-get_y"><strong>get_y</strong></a>(self)</dt><dd><tt>Method&nbsp;to&nbsp;retrieve&nbsp;the&nbsp;y&nbsp;value<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;float:&nbsp;value&nbsp;of&nbsp;the&nbsp;component&nbsp;in&nbsp;the&nbsp;y&nbsp;direction&nbsp;of&nbsp;a&nbsp;vector</tt></dd></dl>
+
+<dl><dt><a name="Vector-mdoulus"><strong>mdoulus</strong></a>(self)</dt><dd><tt>Method&nbsp;to&nbsp;return&nbsp;the&nbsp;modulus&nbsp;of&nbsp;a&nbsp;vector<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;float:&nbsp;modulus&nbsp;of&nbsp;the&nbsp;vector</tt></dd></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="Vector-distance"><strong>distance</strong></a>(vector1, vector2)</dt><dd><tt>Static&nbsp;Method&nbsp;to&nbsp;return&nbsp;the&nbsp;distance&nbsp;vector&nbsp;between&nbsp;two&nbsp;vectors<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;vector1&nbsp;(<a href="#Vector">Vector</a>):&nbsp;<a href="#Vector">Vector</a>&nbsp;one<br>
+&nbsp;&nbsp;&nbsp;&nbsp;vector2&nbsp;(<a href="#Vector">Vector</a>):&nbsp;<a href="#Vector">Vector</a>&nbsp;two<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Vector">Vector</a>:&nbsp;distance&nbsp;distance&nbsp;vector&nbsp;between&nbsp;vectors&nbsp;1&nbsp;and&nbsp;2.</tt></dd></dl>
+
+<dl><dt><a name="Vector-scalar_product"><strong>scalar_product</strong></a>(vectorA, vectorB)</dt><dd><tt>Static&nbsp;method&nbsp;used&nbsp;to&nbsp;ompute&nbsp;the&nbsp;scalar&nbsp;product&nbsp;between&nbsp;two&nbsp;vectors<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;vectorA&nbsp;(<a href="#Vector">Vector</a>):&nbsp;<a href="#Vector">Vector</a>&nbsp;One<br>
+&nbsp;&nbsp;&nbsp;&nbsp;vectorB&nbsp;(<a href="#Vector">Vector</a>):&nbsp;<a href="#Vector">Vector</a>&nbsp;Two<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;float:&nbsp;Scalar&nbsp;Product&nbsp;between&nbsp;the&nbsp;vectors&nbsp;A&nbsp;and&nbsp;B.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

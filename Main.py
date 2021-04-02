@@ -74,5 +74,5 @@ def searchVelocityToMars():
                 print(minimum)
     return (minimum, min_v)
 
-
-main()
+if __name__ == "__main__":
+    main()

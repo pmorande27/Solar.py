@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module SolarSystem</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>SolarSystem</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Cpablo%20morand%C3%A9%5Cdesktop%5Ccomputer%20simulation%5Cproject%5Cplanet_orbital_motion_simualtion%5Csolarsystem.py">c:\users\pablo morandé\desktop\computer simulation\project\planet_orbital_motion_simualtion\solarsystem.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="json.html">json</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="SolarSystem.html#SolarSystem">SolarSystem</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SolarSystem">class <strong>SolarSystem</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#SolarSystem">SolarSystem</a>(time_step,&nbsp;vRelative)<br>
+&nbsp;<br>
+Class&nbsp;used&nbsp;to&nbsp;represent&nbsp;the&nbsp;Solar&nbsp;System&nbsp;and&nbsp;mock&nbsp;its&nbsp;behaviour.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="SolarSystem-__del__"><strong>__del__</strong></a>(self)</dt><dd><tt>Deconstructor&nbsp;of&nbsp;the&nbsp;class,&nbsp;used&nbsp;to&nbsp;close&nbsp;the&nbsp;file.</tt></dd></dl>
+
+<dl><dt><a name="SolarSystem-__init__"><strong>__init__</strong></a>(self, time_step, vRelative)</dt><dd><tt>Constructor&nbsp;of&nbsp;the&nbsp;class&nbsp;SolarSytem,&nbsp;used&nbsp;to&nbsp;initialise&nbsp;all&nbsp;the&nbsp;planets&nbsp;(position,&nbsp;velocity<br>
+&nbsp;and&nbsp;acceleration).<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;time_step&nbsp;(float):&nbsp;interval&nbsp;between&nbsp;updates&nbsp;(in&nbsp;seconds).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;vRelative&nbsp;(float):&nbsp;speed&nbsp;of&nbsp;the&nbsp;probe&nbsp;relative&nbsp;to&nbsp;the&nbsp;Earth.</tt></dd></dl>
+
+<dl><dt><a name="SolarSystem-distanceToMars"><strong>distanceToMars</strong></a>(self)</dt><dd><tt>function&nbsp;used&nbsp;to&nbsp;calculate&nbsp;the&nbsp;distance&nbsp;from&nbsp;the&nbsp;probe&nbsp;to&nbsp;mars&nbsp;at&nbsp;a&nbsp;given&nbsp;time.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;float:&nbsp;distance&nbsp;from&nbsp;the&nbsp;probe&nbsp;to&nbsp;mars</tt></dd></dl>
+
+<dl><dt><a name="SolarSystem-getEnergy"><strong>getEnergy</strong></a>(self)</dt><dd><tt>Function&nbsp;used&nbsp;to&nbsp;get&nbsp;the&nbsp;total&nbsp;energy&nbsp;of&nbsp;the&nbsp;system,&nbsp;which&nbsp;is&nbsp;the&nbsp;sum&nbsp;of&nbsp;the&nbsp;kinetic&nbsp;energy&nbsp;and&nbsp;potential&nbsp;<br>
+energy&nbsp;at&nbsp;a&nbsp;given&nbsp;time<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;float:&nbsp;value&nbsp;of&nbsp;the&nbsp;total&nbsp;energy.</tt></dd></dl>
+
+<dl><dt><a name="SolarSystem-getKineticenergy"><strong>getKineticenergy</strong></a>(self)</dt><dd><tt>Function&nbsp;used&nbsp;to&nbsp;obtain&nbsp;the&nbsp;kinetic&nbsp;energy&nbsp;of&nbsp;the&nbsp;system&nbsp;at&nbsp;a&nbsp;given&nbsp;time.<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;float:&nbsp;Value&nbsp;of&nbsp;the&nbsp;kinetic&nbsp;energy&nbsp;of&nbsp;the&nbsp;system</tt></dd></dl>
+
+<dl><dt><a name="SolarSystem-getPotentialEnergy"><strong>getPotentialEnergy</strong></a>(self)</dt><dd><tt>Function&nbsp;used&nbsp;to&nbsp;get&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;potential&nbsp;energy&nbsp;of&nbsp;the&nbsp;system&nbsp;at&nbsp;a&nbsp;given&nbsp;time.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;float:&nbsp;Potential&nbsp;Energy&nbsp;of&nbsp;the&nbsp;system.</tt></dd></dl>
+
+<dl><dt><a name="SolarSystem-inputFiles"><strong>inputFiles</strong></a>(self)</dt><dd><tt>Function&nbsp;used&nbsp;to&nbsp;read&nbsp;all&nbsp;the&nbsp;planets&nbsp;information&nbsp;from&nbsp;the&nbsp;supplied&nbsp;file&nbsp;(CelestialObjecs.txt).<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Planet]:&nbsp;list&nbsp;of&nbsp;all&nbsp;the&nbsp;planets&nbsp;(<a href="builtins.html#object">object</a>&nbsp;type&nbsp;Planet)</tt></dd></dl>
+
+<dl><dt><a name="SolarSystem-update_beeman"><strong>update_beeman</strong></a>(self)</dt><dd><tt>Method&nbsp;used&nbsp;to&nbsp;update&nbsp;the&nbsp;position,&nbsp;velocity&nbsp;and&nbsp;acceleration&nbsp;of&nbsp;a&nbsp;list&nbsp;of&nbsp;planets&nbsp;using&nbsp;<br>
+Beeman's&nbsp;methods<br>
+&nbsp;<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int:&nbsp;Energy&nbsp;of&nbsp;the&nbsp;system&nbsp;after&nbsp;the&nbsp;update</tt></dd></dl>
+
+<dl><dt><a name="SolarSystem-update_euler"><strong>update_euler</strong></a>(self)</dt><dd><tt>Method&nbsp;used&nbsp;to&nbsp;update&nbsp;the&nbsp;position,&nbsp;velocity&nbsp;and&nbsp;acceleration&nbsp;of&nbsp;a&nbsp;list&nbsp;of&nbsp;planets<br>
+using&nbsp;Euler-Crommer&nbsp;Method.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;:&nbsp;returns&nbsp;the&nbsp;energy&nbsp;of&nbsp;the&nbsp;system&nbsp;after&nbsp;the&nbsp;update.</tt></dd></dl>
+
+<dl><dt><a name="SolarSystem-update_initial_acceleration"><strong>update_initial_acceleration</strong></a>(self)</dt><dd><tt>Function&nbsp;use&nbsp;to&nbsp;set&nbsp;the&nbsp;acceleration&nbsp;of&nbsp;the&nbsp;planets&nbsp;as&nbsp;t=0.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>G</strong> = 6.674079999999999e-11</dl>
+
+</td></tr></table></td></tr></table>
+</body></html>
