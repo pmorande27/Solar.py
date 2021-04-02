@@ -103,7 +103,7 @@ class Planet(object):
             return -1
 
     @staticmethod
-    def angleBetweenPlantes(planet_A, planet_B):
+    def angleBetweenPlanets(planet_A, planet_B):
         position_A = planet_A.position
         position_B = planet_B.position
         angle_in_radians = math.acos(Vector.scalar_product(position_A, position_B) / (position_A.mdoulus() * position_B.mdoulus()))
