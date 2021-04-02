@@ -29,6 +29,9 @@ def main():
 
 
 def EnergyGraphComparisson():
+    """Function used to generate a comparison graph between Euler's method and Beeman's 
+    to show conservation (or not conservation) of energy in both methods
+    """
     system = SolarSystem(3600, 10.175 * 10 ** 3)
     energy_1 = []
     system2 = SolarSystem(3600, 10.175 * 10 ** 3)
@@ -44,6 +47,13 @@ def EnergyGraphComparisson():
 
 
 def searchVelocityToMars():
+    """Function used to searc for the optimal velocity for the probe to approach mars
+    it will do it by try and error over different values.
+
+    Returns:
+        (float,float): tuple of distance the minimum distance found and the speed needed to
+        accomplish it.
+    """
     tries = 100
     updates = 10000 * 40
     start_velocity = 10.175 * 10 ** 3
