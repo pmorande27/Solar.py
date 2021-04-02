@@ -70,9 +70,6 @@ class Planet(object):
         """
         acceleration_current = self.acceleration.__copy__()
         self.update_acceleration(others)
-        c = self.acceleration * 2
-        d = acceleration_current * 5
-        f = self.acceleration_prev * -1
         a = (self.acceleration * 2 + acceleration_current * 5 - self.acceleration_prev) * time_step / 6
         self.velocity += a
         self.acceleration_prev = acceleration_current
