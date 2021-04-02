@@ -7,8 +7,17 @@ class Planet(object):
     G = 6.67408 * 10 ** -11
 
     def __init__(self, name, mass, orbital_radius, simulated_radius, type_of_object, central_mass, vRelative):
-        """
-        Constructor of the class used to initziled important fields such as the mass, the position, acceleration and velocity of the object.
+        """Constructor of the class used to initsile important fields such as the mass, the position, acceleration and velocity of the object.
+
+
+        Args:
+            name (string): Name of the Celestial body
+            mass (float): mass of the Celestial body
+            orbital_radius (float): orbital radius of Celestial body (assumed)
+            simulated_radius (int): radius of the circle that represent such body in the animation
+            type_of_object (string): type of Celestial body, can be star, planet or probe
+            central_mass (float): mass for the centras potential approximation to calculate the initial variables.
+            vRelative (float): relativ velocity, only used for the probe case.
         """
         self.time = 0
         self.name = name
@@ -36,20 +45,26 @@ class Planet(object):
         self.simulated_radius = simulated_radius
 
     def update_position_euler(self, time_step):
-        """
-        Method used to update position using Euler integration method
+        """Method used to ipdate the position of a Celestial Body using Euler-Crommer's method.
+
+        Args:
+            time_step (float): time between updates.
         """
         self.position += self.velocity * time_step
 
     def update_velocity_euler(self, time_step):
-        """
-        Method used to update velocity using Euler integration method
+        """Method used to ipdate the velocity  of a Celestial Body  using Euler-Crommer's method.
+
+        Args:
+            time_step (float): time between updates.
         """
         self.velocity += self.acceleration * time_step
 
     def update_position_beeman(self, time_step):
-        """
-        Method used to update position using Euler integration method
+        """Method used to ipdate the position  of a Celestial Body  using Beeman's method.
+
+        Args:
+            time_step (float): time between updates.
         """
         self.position += self.velocity * time_step + (
                     self.acceleration * 4 - self.acceleration_prev) * time_step * time_step / 6
@@ -65,8 +80,10 @@ class Planet(object):
                 self.time += time_step
 
     def update_velocity_beeman(self, time_step, others):
-        """
-        Method used to update velocity using Beeman integration method
+        """Method used to ipdate the velocity of a Celestial Body  using Beeman's method.
+
+        Args:
+            time_step (float): time between updates.
         """
         acceleration_current = self.acceleration.__copy__()
         self.update_acceleration(others)
@@ -75,9 +92,11 @@ class Planet(object):
         self.acceleration_prev = acceleration_current
 
     def update_acceleration(self, others):
-        """
-        Method used to update acceleration by adding the acceleration due to the gravitational force between the
-        different bodies.
+        """Method used to update the acceleration of a body taking into account the gravitational pull of the other
+        bodies in the system.
+
+        Args:
+            others ([Planet]): other Celestial Bodies that influence the total acceleration of the given body.
         """
         # Restart acceleration of the object
         self.acceleration = Vector(0, 0)
@@ -92,10 +111,11 @@ class Planet(object):
                         others[i].mass * Planet.G / (distances.mdoulus() ** 2))
 
     def get_y_sign(self):
-        """
-        Method used to get the sign of the y-position of a planet, useful to calculate the orbital period of the planets
+        """Method used to get the sign of the y-position of a planet, useful to calculate the orbital period of the planets
         during the simulation.
-        :return: 1 if the sign is positive and -1 if it is negative
+
+        Returns:
+            int: 1 if the sign is positive and -1 if it is negative
         """
         if self.position.get_y() >= 0:
             return 1
@@ -104,6 +124,15 @@ class Planet(object):
 
     @staticmethod
     def angleBetweenPlanets(planet_A, planet_B):
+        """Static Method used to find the angle between two planets (using the postion vector)
+
+        Args:
+            planet_A (Planet): Body A
+            planet_B (Planet): Body B 
+
+        Returns:
+            float: anlge between the two position vectors.
+        """
         position_A = planet_A.position
         position_B = planet_B.position
         angle_in_radians = math.acos(Vector.scalar_product(position_A, position_B) / (position_A.mdoulus() * position_B.mdoulus()))
