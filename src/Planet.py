@@ -43,6 +43,12 @@ class Planet(object):
         self.acceleration = Vector(0, 0)
         self.acceleration_prev = Vector(0, 0)
         self.simulated_radius = simulated_radius
+    
+    def getInitialVelocity(position,velocity):
+        unit_position = position/position.mdoulus()
+        unit_tangent = Vector(-unit_position.get_y(),unit_position.get_x())
+        return unit_tangent*velocity
+
 
     def update_position_euler(self, time_step):
         """Method used to ipdate the position of a Celestial Body using Euler-Crommer's method.
