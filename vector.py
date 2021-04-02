@@ -77,3 +77,7 @@ class Vector(object):
         Overridden + operator for addition.
         """
         return Vector(self.value_x - vector.value_x, self.value_y - vector.value_y)
+
+    @staticmethod
+    def scalar_product(vectorA, vectorB):
+        return vectorA.get_x() * vectorB.get_x() + vectorA.get_y() * vectorA.get_y()

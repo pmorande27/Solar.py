@@ -119,3 +119,4 @@ class SolarSystem(object):
                 distance = distances.mdoulus()
                 potential += -SolarSystem.G * body_one.mass * body_two.mass / distance
         return potential
+
