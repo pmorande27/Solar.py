@@ -26,10 +26,11 @@ class Planet(object):
             self.position = Vector(orbital_radius, 0)
             self.velocity = Vector(0, (Planet.G * central_mass / orbital_radius) ** 0.5)
             self.sign = 1
-        # Set-up acceleration and radius
+        # Case for the Probe
         elif type_of_object == "Probe":
             self.position = Vector(orbital_radius, 6.02 * 10 ** 6)
             self.velocity = Vector(0, 29.8 * 10 ** 3 + vRelative)
+        # Set-up acceleration and radius
         self.acceleration = Vector(0, 0)
         self.acceleration_prev = Vector(0, 0)
         self.simulated_radius = simulated_radius
@@ -78,7 +79,8 @@ class Planet(object):
 
     def update_acceleration(self, others):
         """
-        Method used to update acceleration by adding the acceleration due to the gravitational force between the different bodies
+        Method used to update acceleration by adding the acceleration due to the gravitational force between the
+        different bodies.
         """
         # Restart acceleration of the object
         self.acceleration = Vector(0, 0)
@@ -93,6 +95,11 @@ class Planet(object):
                         others[i].mass * Planet.G / (distances.mdoulus() ** 2))
 
     def get_y_sign(self):
+        """
+        Method used to get the sign of the y-position of a planet, useful to calculate the orbital period of the planets
+        during the simulation.
+        :return: 1 if the sign is positive and -1 if it is negative
+        """
         if self.position.get_y() >= 0:
             return 1
         else:
