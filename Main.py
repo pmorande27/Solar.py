@@ -2,7 +2,7 @@ from animate import animation
 from Planets import Planet
 from SolarSystem import SolarSystem
 import numpy as np
-import matplotlib;
+import matplotlib
 
 matplotlib.use("TkAgg")
 import matplotlib.pyplot as plt
