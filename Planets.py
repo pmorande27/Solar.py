@@ -50,10 +50,6 @@ class Planet(object):
         """
         Method used to update position using Euler integration method
         """
-
-        if self.type_of_object == "Planet":
-            previous = self.sign
-
         self.position += self.velocity * time_step + (
                     self.acceleration * 4 - self.acceleration_prev) * time_step * time_step / 6
 
