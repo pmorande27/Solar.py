@@ -103,7 +103,7 @@ class Planet(object):
     def update_velocity_beeman(self, time_step, others):
         """Method used to update the velocity of a Celestial Body using Beeman's method. 
         The velocity of the body at time t + dt depends on the acceleration at time t +dt and the acceleration
-        and velocity at time t. It also depends on the time between updates dt.
+        and velocity at time t and at time t - dt. It also depends on the time between updates dt.
         Args:
             time_step (float): time between updates.
         """
