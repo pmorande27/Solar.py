@@ -24,7 +24,6 @@ def main():
     animate.scatterplot(10000*30)
     # EnergyGraphComparisson()
 
-
 def EnergyGraphComparisson():
     """Function used to generate a comparison graph between Euler's method and Beeman's 
     to show conservation (or not conservation) of energy in both methods
