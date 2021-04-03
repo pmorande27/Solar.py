@@ -2,6 +2,7 @@ import json
 from Planet import Planet
 from vector import Vector
 import numpy as np
+from Options import Options
 
 
 class SolarSystem(object):
@@ -9,7 +10,7 @@ class SolarSystem(object):
     """
     G = 6.67408 * 10 ** -11
 
-    def __init__(self, time_step, vRelative):
+    def __init__(self, time_step, vRelative, options):
         """Constructor of the class SolarSytem, used to initialise all the planets (position, velocity
          and acceleration).
 
@@ -21,6 +22,13 @@ class SolarSystem(object):
         self.celestial_bodies = self.inputFiles()
         self.time_step = time_step
         self.update_initial_acceleration()
+        if (options ==Options.NORMAL_RUN):
+            self.initial_time_step = time_step
+            self.initial = False
+        else:
+            self.initial_time_step = 1
+            self.initial = False
+        self.time = 0
         print(self.getKineticenergy())
         #self.file = open("energy", "w")
         #self.file.write(str(self.getEnergy()) + "\n")
@@ -32,7 +40,7 @@ class SolarSystem(object):
         pass
         #self.file.close()
 
-    def inputFiles(self):
+    def inputFiles(self, option):
         """Function used to read all the planets information from the supplied file (CelestialObjecs.txt).
 
         Returns:
@@ -45,6 +53,8 @@ class SolarSystem(object):
                 planets.append(Planet(star['Name'], float(star['mass']), float(star['orbital_radius']),
                                       float(star['simulated_radius']), star['type'], 0, self.vRelative))
             for planet in data['Planets']:
+                if(option == Options.NORMAL_RUN and planet['Name'] =="Probe"):
+                    continue
                 planets.append(Planet(planet['Name'], float(planet['mass']), float(planet['orbital_radius']),
                                       float(planet['simulated_radius']), planet['type'], float(star['mass']),
                                       self.vRelative))
