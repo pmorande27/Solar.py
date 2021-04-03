@@ -46,6 +46,17 @@ class Planet(object):
         self.simulated_radius = simulated_radius
     
     def getInitialVelocity(self,position,velocity):
+        """Method used to get the correct tangential velocity of an object orbiting. This is calculated by
+        taking the perpendicular vector to the position (constained in the orbit's plane) and multiply it by the
+        modulus (norm) of the velocity.
+
+        Args:
+            position ([float]): Numpy Array containing the position of the object
+            velocity (float): modulus of the velocity.
+
+        Returns:
+            [float]: returns the new velocity vector tangent to the orbit's trajectory.
+        """
         unit_vector = position/np.linalg.norm(position)
         unit_tangent = np.array([-unit_vector[1], unit_vector[0]])
         return velocity*unit_tangent
