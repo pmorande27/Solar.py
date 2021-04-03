@@ -11,12 +11,12 @@ class SolarSystem(object):
     G = 6.67408 * 10 ** -11
 
     def __init__(self, time_step, vRelative, options):
-        """Constructor of the class SolarSytem, used to initialise all the planets (position, velocity
-         and acceleration).
+        """Constructor of the class SolarSytem, used to initialise all the planets with the information supplied from a file.
 
         Args:
             time_step (float): interval between updates (in seconds).
             vRelative (float): speed of the probe relative to the Earth.
+            options (Options): Enum used to decide which type of simulation should be launched.
         """
         self.vRelative = vRelative
         self.celestial_bodies = self.inputFiles(options)
@@ -41,6 +41,7 @@ class SolarSystem(object):
 
     def inputFiles(self, option):
         """Function used to read all the planets information from the supplied file (CelestialObjecs.txt).
+        It will intiatialize all the planets with the required information and it will append them to a list.
 
         Returns:
             [Planet]: list of all the planets (object type Planet)
@@ -61,6 +62,9 @@ class SolarSystem(object):
 
     def getKineticenergy(self):
         """Function used to obtain the kinetic energy of the system at a given time.
+        The Kinetic energy of the system is calculated by iterating through all the bodies on a system and
+        adding the individual contributions by the usual formaula, K = 1/2mv^2.
+
         Returns:
             float: Value of the kinetic energy of the system
         """
@@ -81,8 +85,9 @@ class SolarSystem(object):
 
     def update_beeman(self):
         """Method used to update the position, velocity and acceleration of a list of planets using 
-        Beeman's methods
-
+        Beeman's methods. First the positions of all the planets are updated, then the velocities of all of them, which
+        also updates the accelerations. TO obtain good results it is important to do it in these 'blocks', otherwise the
+        update on the position of one planet could affect the update on the position of another planet (if the updates were done in only one block)-
 
         Returns:
             int: Energy of the system after the update
@@ -107,6 +112,7 @@ class SolarSystem(object):
 
     def distanceToMars(self):
         """function used to calculate the distance from the probe to mars at a given time.
+        The Probe's position it is assumed to be the last in the list and mars the 5th one.
 
         Returns:
             float: distance from the probe to mars
@@ -116,7 +122,8 @@ class SolarSystem(object):
 
     def update_euler(self):
         """Method used to update the position, velocity and acceleration of a list of planets
-        using Euler-Crommer Method.
+        using Euler-Crommer Method. The accelerations are updated to time t, then all the velcoities are updated to 
+        time t + dt and finally all the positions are updated at time t+dt.
 
         Returns:
             int : returns the energy of the system after the update.
@@ -139,7 +146,7 @@ class SolarSystem(object):
         return energy
 
     def update_initial_acceleration(self):
-        """Function use to set the acceleration of the planets as t=0.
+        """Function used to set the acceleration of the planets as t=0. This is important for the Beeman's Method.
         """
         for k in range(len(self.celestial_bodies)):
             others = self.celestial_bodies[:]
@@ -149,6 +156,8 @@ class SolarSystem(object):
 
     def getPotentialEnergy(self):
         """Function used to get the value of the potential energy of the system at a given time.
+        The energy is given by the sum of the individual contributions, each pair of bodies contribute whith
+        -GmM/r^2.
 
         Returns:
             float: Potential Energy of the system.
