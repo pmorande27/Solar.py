@@ -20,9 +20,9 @@ def main():
     animate = animation(system)
     """
     system = SolarSystem(100, 10.175 * 10 ** 3,Options.PROBE_RUN)
-    #animate = animation(system)
+    # animate = animation(system)
     # animate.plot()
-    #animate.scatterplot(10000 * 30)
+    # animate.scatterplot(10000 * 30)
     # EnergyGraphComparisson()
 
 
@@ -30,9 +30,9 @@ def EnergyGraphComparisson():
     """Function used to generate a comparison graph between Euler's method and Beeman's 
     to show conservation (or not conservation) of energy in both methods
     """
-    system = SolarSystem(3600, 10.175 * 10 ** 3)
+    system = SolarSystem(3600, 10.175 * 10 ** 3, Options.PROBE_RUN)
     energy_1 = []
-    system2 = SolarSystem(3600, 10.175 * 10 ** 3)
+    system2 = SolarSystem(3600, 10.175 * 10 ** 3, Options.PROBE_RUN)
     energy_2 = []
     iterate = 10000
     iterations = [i for i in range(iterate)]
@@ -55,7 +55,7 @@ def searchVelocityToMars():
     tries = 100
     updates = 10000 * 40
     start_velocity = 10.175 * 10 ** 3
-    system = SolarSystem(100, start_velocity)
+    system = SolarSystem(100, start_velocity, PROBE_RUN)
     min_v = 0
     increment = 0.001
     minimum = system.distanceToMars()
