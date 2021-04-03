@@ -101,11 +101,7 @@ class SolarSystem(object):
             others = self.celestial_bodies[:]
             planet = others.pop(k)
             planet.update_velocity_beeman(self.time_step, others)
-            # if planet.name == "Probe":
-            # print(planet.velocity.value_y)
-        # print(self.distanceToMars())
         energy = self.getEnergy()
-        # print(energy)
         # self.file.write(str(energy)+"\n")
         return energy
 
@@ -140,8 +136,6 @@ class SolarSystem(object):
             planet = others.pop(k)
             planet.update_position_euler(self.time_step)
         energy = self.getEnergy()
-        # print(energy)
-        # self.file.write(str(energy)+"\n")
         return energy
 
     def update_initial_acceleration(self):
@@ -150,8 +144,6 @@ class SolarSystem(object):
         for k in range(len(self.celestial_bodies)):
             others = self.celestial_bodies[:]
             planet = others.pop(k)
-            # if (planet.name == "Probe"):
-            # print(planet.velocity.value_x)
             planet.update_acceleration(others)
             planet.acceleration_prev = planet.acceleration
 
