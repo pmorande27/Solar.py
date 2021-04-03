@@ -1,6 +1,6 @@
-from vector import Vector
 import matplotlib.pyplot as plt
 import math
+import numpy as np
 
 
 class Planet(object):
@@ -25,28 +25,28 @@ class Planet(object):
 
         # Case the object is supposed to be at the centre at the start
         if type_of_object == "Star":
-            self.position = Vector(0, 0)
-            self.velocity = Vector(0, 0)
+            self.position = np.array([0.0,0.0])
+            self.velocity = np.array([0.0,0.0])
+            print(self.position)
 
         # Case for orbiting objects
         elif type_of_object == "Planet":
-            self.position = Vector(orbital_radius, 0)
-            velocity = Planet.G * central_mass / orbital_radius) ** 0.5
-            self.velocity =self.getInitialVelocity(position,velocity)
+            self.position = np.array([orbital_radius, 0.0])
+            velocity =(Planet.G * central_mass / orbital_radius) ** 0.5
+            self.velocity =np.array([0.0,math.sqrt(Planet.G * central_mass / orbital_radius)])
             self.sign = 1
+            print(self.velocity)
         # Case for the Probe
         elif type_of_object == "Probe":
-            self.position = Vector(orbital_radius, 6.02 * 10 ** 6)
-            self.velocity = Vector(0, 29.8 * 10 ** 3 + vRelative)
+            self.position = np.array([orbital_radius, 6.02 * 10 ** 6])
+            self.velocity = np.array([0.0, 29.8 * 10 ** 3 + vRelative])
         # Set-up acceleration and radius
-        self.acceleration = Vector(0, 0)
-        self.acceleration_prev = Vector(0, 0)
+        self.acceleration = np.array([0.0,0.0])
+        self.acceleration_prev = np.array([0.0,0.0])
         self.simulated_radius = simulated_radius
     
     def getInitialVelocity(self,position,velocity):
-        unit_position = position/position.mdoulus()
-        unit_tangent = Vector(-unit_position.get_y(),unit_position.get_x())
-        return unit_tangent*velocity
+        pass
 
 
     def update_position_euler(self, time_step):
@@ -90,7 +90,7 @@ class Planet(object):
         Args:
             time_step (float): time between updates.
         """
-        acceleration_current = self.acceleration.__copy__()
+        acceleration_current = np.copy(self.acceleration)
         self.update_acceleration(others)
         a = (self.acceleration * 2 + acceleration_current * 5 - self.acceleration_prev) * time_step / 6
         self.velocity += a
@@ -104,16 +104,19 @@ class Planet(object):
             others ([Planet]): other Celestial Bodies that influence the total acceleration of the given body.
         """
         # Restart acceleration of the object
-        self.acceleration = Vector(0, 0)
+        self.acceleration = np.array([0.0, 0.0])
         # Update acceleration by adding the acceleration due to the gravitational interaction between the body and
         # each of the other bodies.
         for i in range(len(others)):
+            #print("hola")
             planet2 = others[i]
             vector1 = self.position
             vector2 = planet2.position
-            distances = Vector.distance(vector1, vector2)
-            self.acceleration += (distances / distances.mdoulus()) * (
-                        others[i].mass * Planet.G / (distances.mdoulus() ** 2))
+            #print(vector1)
+            #print(vector2)
+            distances =  vector2-vector1
+            self.acceleration += (distances / np.linalg.norm(distances)) * (
+                        others[i].mass * Planet.G / (np.linalg.norm(distances) ** 2))
 
     def get_y_sign(self):
         """Method used to get the sign of the y-position of a planet, useful to calculate the orbital period of the planets
@@ -122,7 +125,7 @@ class Planet(object):
         Returns:
             int: 1 if the sign is positive and -1 if it is negative
         """
-        if self.position.get_y() >= 0:
+        if self.position[1] >= 0:
             return 1
         else:
             return -1
@@ -138,7 +141,4 @@ class Planet(object):
         Returns:
             float: anlge between the two position vectors.
         """
-        position_A = planet_A.position
-        position_B = planet_B.position
-        angle_in_radians = math.acos(Vector.scalar_product(position_A, position_B) / (position_A.mdoulus() * position_B.mdoulus()))
-        return angle_in_radians*360/(2*math.pi)
+        pass

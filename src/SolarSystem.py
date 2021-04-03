@@ -1,6 +1,7 @@
 import json
 from Planet import Planet
 from vector import Vector
+import numpy as np
 
 
 class SolarSystem(object):
@@ -20,16 +21,16 @@ class SolarSystem(object):
         self.celestial_bodies = self.inputFiles()
         self.time_step = time_step
         self.update_initial_acceleration()
-        self.file = open("energy", "w")
-        self.file.write(str(self.getEnergy()) + "\n")
-        self.mini = Vector.distance(self.celestial_bodies[len(self.celestial_bodies) - 1].position,
-                                    self.celestial_bodies[4].position).mdoulus()
+        print(self.getKineticenergy())
+        #self.file = open("energy", "w")
+        #self.file.write(str(self.getEnergy()) + "\n")
         self.updates = 0
 
     def __del__(self):
         """Deconstructor of the class, used to close the file.
         """
-        self.file.close()
+        pass
+        #self.file.close()
 
     def inputFiles(self):
         """Function used to read all the planets information from the supplied file (CelestialObjecs.txt).
@@ -57,7 +58,7 @@ class SolarSystem(object):
         kinetic = 0
         for k in range(len(self.celestial_bodies)):
             planet = self.celestial_bodies[k]
-            kinetic += planet.mass * 0.5 * planet.velocity.mdoulus() ** 2
+            kinetic += planet.mass * 0.5 * np.linalg.norm(planet.velocity)** 2
         return kinetic
 
     def getEnergy(self):
@@ -93,7 +94,6 @@ class SolarSystem(object):
             planet.update_velocity_beeman(self.time_step, others)
             # if planet.name == "Probe":
             # print(planet.velocity.value_y)
-            kinetic += planet.mass * 0.5 * planet.velocity.mdoulus() ** 2
         # print(self.distanceToMars())
         energy = self.getEnergy()
         # print(energy)
@@ -106,8 +106,8 @@ class SolarSystem(object):
         Returns:
             float: distance from the probe to mars
         """
-        return Vector.distance(self.celestial_bodies[len(self.celestial_bodies) - 1].position,
-                               self.celestial_bodies[4].position).mdoulus()
+        return  np.linalg.norm(self.celestial_bodies[len(self.celestial_bodies) - 1].position,
+                               self.celestial_bodies[4].position)
 
     def update_euler(self):
         """Method used to update the position, velocity and acceleration of a list of planets
@@ -130,7 +130,6 @@ class SolarSystem(object):
             others = self.celestial_bodies[:]
             planet = others.pop(k)
             planet.update_position_euler(self.time_step)
-            kinetic += planet.mass * 0.5 * planet.velocity.mdoulus() ** 2
         energy = self.getEnergy()
         # print(energy)
         # self.file.write(str(energy)+"\n")
@@ -160,8 +159,8 @@ class SolarSystem(object):
                 body_two = self.celestial_bodies[j]
                 vector1 = body_one.position
                 vector2 = body_two.position
-                distances = Vector.distance(vector1, vector2)
-                distance = distances.mdoulus()
+                distances =  vector2-vector1
+                distance = np.linalg.norm(distances)
                 potential += -SolarSystem.G * body_one.mass * body_two.mass / distance
         return potential
 
