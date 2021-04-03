@@ -27,15 +27,12 @@ class Planet(object):
         if type_of_object == "Star":
             self.position = np.array([0.0,0.0])
             self.velocity = np.array([0.0,0.0])
-            print(self.position)
-
         # Case for orbiting objects
         elif type_of_object == "Planet":
             self.position = np.array([orbital_radius, 0.0])
             velocity =(Planet.G * central_mass / orbital_radius) ** 0.5
             self.velocity =np.array([0.0,math.sqrt(Planet.G * central_mass / orbital_radius)])
             self.sign = 1
-            print(self.velocity)
         # Case for the Probe
         elif type_of_object == "Probe":
             self.position = np.array([orbital_radius, 6.02 * 10 ** 6])
