@@ -29,7 +29,6 @@ class SolarSystem(object):
             self.initial_time_step = 1
             self.initial = False
         self.time = 0
-        print(self.getKineticenergy())
         #self.file = open("energy", "w")
         #self.file.write(str(self.getEnergy()) + "\n")
         self.updates = 0
