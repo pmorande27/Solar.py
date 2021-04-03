@@ -19,7 +19,7 @@ class SolarSystem(object):
             vRelative (float): speed of the probe relative to the Earth.
         """
         self.vRelative = vRelative
-        self.celestial_bodies = self.inputFiles()
+        self.celestial_bodies = self.inputFiles(options)
         self.time_step = time_step
         self.update_initial_acceleration()
         if (options ==Options.NORMAL_RUN):

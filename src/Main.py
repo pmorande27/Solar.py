@@ -7,6 +7,7 @@ import matplotlib
 matplotlib.use("TkAgg")
 import matplotlib.pyplot as plt
 from helperfunctions import writeFile
+from Options import Options
 
 
 def main():
@@ -18,10 +19,10 @@ def main():
     system = SolarSystem(1000,10.5013*10**3)
     animate = animation(system)
     """
-    system = SolarSystem(100, 10.175 * 10 ** 3)
-    animate = animation(system)
+    system = SolarSystem(100, 10.175 * 10 ** 3,Options.PROBE_RUN)
+    #animate = animation(system)
     # animate.plot()
-    animate.scatterplot(10000 * 30)
+    #animate.scatterplot(10000 * 30)
     # EnergyGraphComparisson()
 
 
