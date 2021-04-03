@@ -20,9 +20,9 @@ def main():
     animate = animation(system)
     """
     system = SolarSystem(100, 10.175 * 10 ** 3,Options.PROBE_RUN)
-    # animate = animation(system)
-    # animate.plot()
-    # animate.scatterplot(10000 * 30)
+    animate = animation(system)
+    #animate.plot()
+    animate.scatterplot(10000*30)
     # EnergyGraphComparisson()
 
 
