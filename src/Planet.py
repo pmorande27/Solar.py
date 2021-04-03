@@ -61,7 +61,7 @@ class Planet(object):
 
     def update_position_euler(self, time_step):
         """Method used to update the position of a Celestial Body using Euler-Crommer's method.
-        The new position depends at t + dt depends on the position and velocity at time t and the
+        The new position depends at t + dt depends on the position at and velocity at time t+dt and the
         time between updates dt.
 
         Args:
