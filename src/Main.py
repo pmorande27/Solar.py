@@ -3,10 +3,8 @@ from Planet import Planet
 from SolarSystem import SolarSystem
 import numpy as np
 import matplotlib
-
 matplotlib.use("TkAgg")
 import matplotlib.pyplot as plt
-from helperfunctions import writeFile
 from Options import Options
 
 
