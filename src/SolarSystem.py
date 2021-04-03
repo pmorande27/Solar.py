@@ -1,5 +1,6 @@
 import json
 from Planet import Planet
+from vector import Vector
 import numpy as np
 from Options import Options
 
