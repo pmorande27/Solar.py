@@ -117,12 +117,9 @@ class Planet(object):
         # Update acceleration by adding the acceleration due to the gravitational interaction between the body and
         # each of the other bodies.
         for i in range(len(others)):
-            #print("hola")
             planet2 = others[i]
             vector1 = self.position
             vector2 = planet2.position
-            #print(vector1)
-            #print(vector2)
             distances =  vector2-vector1
             self.acceleration += (distances / np.linalg.norm(distances)) * (
                         others[i].mass * Planet.G / (np.linalg.norm(distances) ** 2))
