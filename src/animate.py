@@ -31,7 +31,7 @@ class animation(object):
             self.System.update_beeman()
             planets = self.System.celestial_bodies
             for i in range(len(planets)):
-                positions[i].append((planets[i].position.get_x(),planets[i].position.get_y()))
+                positions[i].append((planets[i].position[0],planets[i].position[1]))
         for j in range(len(positions)):
             position_x,position_y = zip(*positions[j])
             plt.plot(position_x,position_y)
@@ -58,7 +58,7 @@ class animation(object):
         planets = self.System.celestial_bodies
         # update the position of the circle
         for j in range(len( planets)):
-            self.patches[j].center = (planets[j].position.get_x(), planets[j].position.get_y())
+            self.patches[j].center = (planets[j].position[0], planets[j].position[1])
         return self.patches
 
     def plot(self):
@@ -79,7 +79,7 @@ class animation(object):
         planets = self.System.celestial_bodies
         #Get position of the planets and assing it to the circles.
         for planet in range(len(planets)):
-            a = plt.Circle((planets[planet].position.get_x(), planets[planet].position.get_y()),
+            a = plt.Circle((planets[planet].position[0], planets[planet].position[1]),
                            planets[planet].simulated_radius, color=colors[planet], animated=True)
             self.patches.append(a)
 
