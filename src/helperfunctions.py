@@ -27,7 +27,7 @@ def writeFile():
             "simulated_radius" : str(planet.simulated_radius),
             "type": planet.type_of_object,
             })
-    with open("CelestialObjects", "w") as outfile:
+    with open("../data/CelestialObjects", "w") as outfile:
         json.dump(data, outfile)
 def add_planet():
     """Method used to add a new Celestial Body to the file of CelestialBodies.txt in the correct json format.
@@ -37,7 +37,7 @@ def add_planet():
     planet_orbital_radius = float(input("Planet's orbital radius"))
     simulated_radius = float(input("simulated radius"))
     data = {}
-    with open("CelestialObjects") as json_file:
+    with open(".\data\CelestialObjects.txt") as json_file:
             data = json.load(json_file)
             data['Planet'].append({
             "Name" : planet_name,
@@ -46,5 +46,5 @@ def add_planet():
             "simulated_radius" : str(simulated_radius),
             "type": "Planet"
             })
-    with open("CelestialObjects", "w") as outfile:
+    with open("../data/CelestialObjects", "w") as outfile:
         json.dump(data, outfile)

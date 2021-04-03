@@ -46,7 +46,7 @@ class SolarSystem(object):
             [Planet]: list of all the planets (object type Planet)
         """
         planets = []
-        with open("CelestialObjects") as json_file:
+        with open("../data/CelestialObjects") as json_file:
             data = json.load(json_file)
             for star in data['Star']:
                 planets.append(Planet(star['Name'], float(star['mass']), float(star['orbital_radius']),
