@@ -7,7 +7,7 @@ class Planet(object):
     G = 6.67408 * 10 ** -11
 
     def __init__(self, name, mass, orbital_radius, simulated_radius, type_of_object, central_mass, vRelative):
-        """Constructor of the class used to initsile important fields such as the mass, the position, acceleration and velocity of the object.
+        """Constructor of the class used to initsile all the fields of the object. Such as the mass, the position, acceleration and velocity of the object.
         Args:
             name (string): Name of the Celestial body
             mass (float): mass of the Celestial body
@@ -48,7 +48,7 @@ class Planet(object):
         modulus (norm) of the velocity.
 
         Args:
-            position ([float]): Numpy Array containing the position of the object
+            position ([float]): Numpy Array containing the position of the object at time = 0
             velocity (float): modulus of the velocity.
 
         Returns:
@@ -59,7 +59,9 @@ class Planet(object):
         return velocity*unit_tangent
 
     def update_position_euler(self, time_step):
-        """Method used to ipdate the position of a Celestial Body using Euler-Crommer's method.
+        """Method used to update the position of a Celestial Body using Euler-Crommer's method.
+        The new position depends at t + dt depends on the position and velocity at time t and the
+        time between updates dt.
 
         Args:
             time_step (float): time between updates.
@@ -67,7 +69,9 @@ class Planet(object):
         self.position += self.velocity * time_step
 
     def update_velocity_euler(self, time_step):
-        """Method used to ipdate the velocity  of a Celestial Body  using Euler-Crommer's method.
+        """Method used to update the velocity  of a Celestial Body using Euler-Crommer's method.
+        The velocity at time t + dt depends on the velocity and the acceleratation at time t and the
+        time between updates dt.
 
         Args:
             time_step (float): time between updates.
@@ -75,8 +79,10 @@ class Planet(object):
         self.velocity += self.acceleration * time_step
 
     def update_position_beeman(self, time_step):
-        """Method used to ipdate the position  of a Celestial Body  using Beeman's method.
-
+        """Method used to update the position  of a Celestial Body sing Beeman's method.
+        THe position of the object at time t + dt depends on the position, the velocty and acceleration
+        at time t and the acceleration at t -dt and the time between updates dt.
+        This method also checks if a period has been completed, if so it will print to the console.
         Args:
             time_step (float): time between updates.
         """
