@@ -18,13 +18,10 @@ def main():
     system = SolarSystem(1000,10.5013*10**3)
     animate = animation(system)
     """
-    # 10.175
     system = SolarSystem(100, 10.175 * 10 ** 3)
     animate = animation(system)
     # animate.plot()
     animate.scatterplot(10000 * 30)
-
-    # print(searchVelocityToMars())
     # EnergyGraphComparisson()
 
 
@@ -66,7 +63,6 @@ def searchVelocityToMars():
         print(i)
         system = SolarSystem(240, start_velocity + i * increment)
         for i in range(updates):
-            # print(system.distanceToMars())
             system.update_beeman()
             if minimum > system.distanceToMars():
                 minimum = system.distanceToMars()
