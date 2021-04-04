@@ -36,6 +36,17 @@ class SolarSystem(object):
         """Deconstructor of the class, used to close the file.
         """
         self.file.close()
+    
+     def distanceToEarth(self):
+        """function used to calculate the distance from the probe to Earth at a given time.
+        The Probe's position it is assumed to be the last in the list and Earth the 4th one.
+
+        Returns:
+            float: distance from the probe to Earth
+        """
+        return  np.linalg.norm(-self.celestial_bodies[len(self.celestial_bodies) - 1].position+
+                               self.celestial_bodies[3].position)
+
 
     def inputFiles(self, option):
         """Function used to read all the planets information from the supplied file (CelestialObjecs.txt).
