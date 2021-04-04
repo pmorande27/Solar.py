@@ -37,7 +37,7 @@ class SolarSystem(object):
         """
         self.file.close()
     
-     def distanceToEarth(self):
+    def distanceToEarth(self):
         """function used to calculate the distance from the probe to Earth at a given time.
         The Probe's position it is assumed to be the last in the list and Earth the 4th one.
 
