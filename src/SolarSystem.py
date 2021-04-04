@@ -28,15 +28,14 @@ class SolarSystem(object):
             self.initial_time_step = 1
             self.initial = False
         self.time = 0
-        #self.file = open("energy", "w")
-        #self.file.write(str(self.getEnergy()) + "\n")
+        self.file = open("../data/energy", "w")
+        self.file.write(str(self.getEnergy()) + "\n")
         self.updates = 0
 
     def __del__(self):
         """Deconstructor of the class, used to close the file.
         """
-        pass
-        #self.file.close()
+        self.file.close()
 
     def inputFiles(self, option):
         """Function used to read all the planets information from the supplied file (CelestialObjecs.txt).
@@ -106,7 +105,7 @@ class SolarSystem(object):
             planet = others.pop(k)
             planet.update_velocity_beeman(self.time_step, others)
         energy = self.getEnergy()
-        # self.file.write(str(energy)+"\n")
+        self.file.write(str(energy)+"\n")
         return energy
 
     def distanceToMars(self):
