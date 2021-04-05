@@ -9,7 +9,7 @@ class SolarSystem(object):
     """
     G = 6.67408 * 10 ** -11
 
-    def __init__(self, time_step, vRelative, options):
+    def __init__(self, time_step, vRelative, options,filename):
         """Constructor of the class SolarSytem, used to initialise all the planets with the information supplied from a file.
 
         Args:
@@ -18,7 +18,7 @@ class SolarSystem(object):
             options (Options): Enum used to decide which type of simulation should be launched.
         """
         self.vRelative = vRelative
-        self.celestial_bodies = self.inputFiles(options)
+        self.celestial_bodies = self.inputFiles(options,filename)
         self.update_initial_acceleration()
         if (options ==Options.NORMAL_RUN):
             self.time_step = time_step
@@ -48,7 +48,7 @@ class SolarSystem(object):
                                self.celestial_bodies[3].position)
 
 
-    def inputFiles(self, option):
+    def inputFiles(self, option,filename):
         """Function used to read all the planets information from the supplied file (CelestialObjecs.txt).
         It will intiatialize all the planets with the required information and it will append them to a list.
 
@@ -56,7 +56,8 @@ class SolarSystem(object):
             [Planet]: list of all the planets (object type Planet)
         """
         planets = []
-        with open("../data/CelestialObjects") as json_file:
+        path = "../data/"+filename
+        with open(path) as json_file:
             data = json.load(json_file)
             for star in data['Star']:
                 planets.append(Planet(star['Name'], float(star['mass']), float(star['orbital_radius']),

@@ -131,6 +131,8 @@ class Planet(object):
             vector1 = self.position
             vector2 = planet2.position
             distances =  vector2-vector1
+            if (np.linalg.norm(distances)==0):
+                raise ValueError("Division by Zero")
             self.acceleration += (distances / np.linalg.norm(distances)) * (
                         others[i].mass * Planet.G / (np.linalg.norm(distances) ** 2))
 

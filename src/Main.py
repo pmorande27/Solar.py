@@ -17,7 +17,7 @@ def main():
     system = SolarSystem(1000,10.5013*10**3)
     animate = animation(system)
     """
-    system = SolarSystem(100, 10.175 * 10 ** 3,Options.PROBE_RUN)
+    system = SolarSystem(100, 10.175 * 10 ** 3,Options.PROBE_RUN,"CelestialObjects")
     animate = animation(system)
     #animate.plot()
     animate.scatterplot(10000*30)
