@@ -88,6 +88,17 @@ class TestPlanets(unittest.TestCase):
         expected_value = np.array([0,math.sqrt(Planet.G/(1))]) + np.array([Planet.G+Planet.G/4,0.0])*100
         self.assertEqual(expected_value[0],self.planetA.velocity[0])
         self.assertEqual(expected_value[1],self.planetA.velocity[1])
+    def test_update_velocity_beeman(self):
+        others = [self.planetC,self.planetB]
+        acceleratation = [Planet.G+Planet.G/4,0.0]
+        self.planetA.update_velocity_beeman(100,others)
+        expected_value = np.array([0,math.sqrt(Planet.G/(1))]) + np.array([Planet.G+Planet.G/4,0.0])*100*2/6
+        self.assertEqual(expected_value[0],self.planetA.velocity[0])
+        self.assertEqual(expected_value[1],self.planetA.velocity[1])
+    
+
+
+
 
 
         
