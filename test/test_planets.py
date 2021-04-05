@@ -24,16 +24,26 @@ class TestPlanets(unittest.TestCase):
             velocity = [0,math.sqrt(Planet.G/(i+1))]
             self.assertEqual(velocity[0],planets[i].velocity[0])
             self.assertEqual(velocity[1],planets[i].velocity[1])
+    def test_sign_start(self):
+        planets = [self.planetA,self.planetB,self.planetC]
+        for planet in planets:
+            self.assertEqual(planet.get_y_sign(),1)
+    def test_sign_on_change(self):
+        self.planetA.position = np.array([0,-1])
+        self.assertEqual(self.planetA.get_y_sign(),-1)
+    
+    
+
 
 
     def test_Euler_identity(self):
-        self.planetA.velocity = [0.0,0.0]
+        self.planetA.velocity = np.array([0.0,0.0])
         initial_position = np.copy(self.planetA.position)
         self.planetA.update_position_euler(1)
         self.assertEqual(initial_position[0],self.planetA.position[0])
         self.assertEqual(initial_position[1],self.planetA.position[1])
     def test_Beeman_identity(self):
-        self.planetA.velocity = [0.0,0.0]
+        self.planetA.velocity =np.array([0.0,0.0])
         initial_position = np.copy(self.planetA.position)
         self.planetA.update_position_beeman(1)
         self.assertEqual(initial_position[0],self.planetA.position[0])
