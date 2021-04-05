@@ -57,6 +57,9 @@ class TestSolarSystem(unittest.TestCase):
         for body in self.system.celestial_bodies:
             kinetic_energy+= 1/2 *body.mass * np.linalg.norm(body.velocity)**2
         self.assertEqual(potential+kinetic_energy,self.system.getEnergy())
+    def test_distance_to_earth(self):
+        expected_value = 6.371*10**6
+        self.assertEqual(expected_value,self.system_probe.distanceToEarth())
 
         
 
