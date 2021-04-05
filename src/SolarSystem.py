@@ -19,14 +19,14 @@ class SolarSystem(object):
         """
         self.vRelative = vRelative
         self.celestial_bodies = self.inputFiles(options)
-        self.time_step = time_step
         self.update_initial_acceleration()
         if (options ==Options.NORMAL_RUN):
-            self.initial_time_step = time_step
+            self.time_step = time_step
             self.initial = False
         else:
-            self.initial_time_step = 1
-            self.initial = False
+            self.time_step = 50
+            self.real_time_step = time_step
+            self.initial = True
         self.time = 0
         self.file = open("../data/energy", "w")
         self.file.write(str(self.getEnergy()) + "\n")
@@ -36,6 +36,17 @@ class SolarSystem(object):
         """Deconstructor of the class, used to close the file.
         """
         self.file.close()
+    
+    def distanceToEarth(self):
+        """function used to calculate the distance from the probe to Earth at a given time.
+        The Probe's position it is assumed to be the last in the list and Earth the 4th one.
+
+        Returns:
+            float: distance from the probe to Earth
+        """
+        return  np.linalg.norm(-self.celestial_bodies[len(self.celestial_bodies) - 1].position+
+                               self.celestial_bodies[3].position)
+
 
     def inputFiles(self, option):
         """Function used to read all the planets information from the supplied file (CelestialObjecs.txt).
@@ -90,6 +101,10 @@ class SolarSystem(object):
         Returns:
             int: Energy of the system after the update
         """
+        if self.initial:
+            if self.distanceToEarth() >= 10**8:
+                self.initial = False
+                self.time_step = self.real_time_step
         kinetic = 0
         self.updates += 1
 
@@ -106,7 +121,9 @@ class SolarSystem(object):
             planet.update_velocity_beeman(self.time_step, others)
         energy = self.getEnergy()
         self.file.write(str(energy)+"\n")
+        self.time += self.time_step
         return energy
+
 
     def distanceToMars(self):
         """function used to calculate the distance from the probe to mars at a given time.

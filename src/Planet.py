@@ -35,8 +35,9 @@ class Planet(object):
             self.sign = 1
         # Case for the Probe
         elif type_of_object == "Probe":
-            self.position = np.array([orbital_radius, 6.02 * 10 ** 6])
+            self.position = np.array([orbital_radius, 6.371 * 10 ** 6])
             self.velocity = np.array([0.0, 29.8 * 10 ** 3 + vRelative])
+            self.sign = 1
         # Set-up acceleration and radius
         self.acceleration = np.array([0.0,0.0])
         self.acceleration_prev = np.array([0.0,0.0])
@@ -90,7 +91,7 @@ class Planet(object):
         self.position += self.velocity * time_step + (
                     self.acceleration * 4 - self.acceleration_prev) * time_step * time_step / 6
 
-        if self.type_of_object == "Planet":
+        if self.type_of_object == "Planet" or self.type_of_object == "Probe":
             previous = self.sign
             self.sign = self.get_y_sign()
             if previous < self.sign:
