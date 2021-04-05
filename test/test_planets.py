@@ -18,7 +18,7 @@ class TestPlanets(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_Velocities(self):
+    def test_velocities_initial(self):
         planets = [self.planetA,self.planetB,self.planetC]
         for i in range(len(planets)):
             velocity = [0,math.sqrt(Planet.G/(i+1))]
@@ -31,11 +31,20 @@ class TestPlanets(unittest.TestCase):
     def test_sign_on_change(self):
         self.planetA.position = np.array([0,-1])
         self.assertEqual(self.planetA.get_y_sign(),-1)
-    
-    
-
-
-
+    def test_acceleration_initial(self):
+        expected_value = np.array([0.0,0.0])
+        planets = [self.planetA,self.planetB,self.planetC]
+        for i in range(len(planets)):
+            self.assertEqual(expected_value[0],planets[i].acceleration[0])
+            self.assertEqual(expected_value[1],planets[i].acceleration[1])
+            self.assertEqual(expected_value[0],planets[i].acceleration_prev[0])
+            self.assertEqual(expected_value[1],planets[i].acceleration_prev[1])
+    def test_acceleration_exception(self):
+        planetD = Planet("D",1,1,1,"Planet",1,1)
+        others = [planetD]
+        with self.assertRaises(ValueError) as context:
+             self.planetA.update_acceleration(others)   
+        self.assertTrue('Division by Zero' in str(context.exception))
     def test_Euler_identity(self):
         self.planetA.velocity = np.array([0.0,0.0])
         initial_position = np.copy(self.planetA.position)
