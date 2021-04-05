@@ -101,17 +101,14 @@ class TestPlanets(unittest.TestCase):
         self.planetA.update_position_euler(100)
         self.assertEqual(expected_value[0],self.planetA.position[0])
         self.assertEqual(expected_value[1],self.planetA.position[1])
-
-
-
-
-
-
-        
-
-
-
-
+    def test_update_position_beeman(self):
+        self.planetA.acceleration =np.array([-1.0,0.0])
+        self.planetA.acceleration_prev = np.array([2.0,1.0])
+        expected_value = np.array([1.0,0.0]) + np.array([0,math.sqrt(Planet.G/(1))])*100 + (
+                    np.array([-1.0,0.0]) * 4 - np.array([2.0,1.0])) * 100 * 100 / 6
+        self.planetA.update_position_beeman(100)
+        self.assertEqual(expected_value[0],self.planetA.position[0])
+        self.assertEqual(expected_value[1],self.planetA.position[1])
 
 
 if __name__ == "__main__":
