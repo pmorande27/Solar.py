@@ -42,7 +42,7 @@ class TestPlanets(unittest.TestCase):
     def test_acceleration_exception(self):
         planetD = Planet("D",1,1,1,"Planet",1,1)
         others = [planetD]
-        with self.assertRaises(ValueError) as context:
+        with self.assertRaises(Exception) as context:
              self.planetA.update_acceleration(others)   
         self.assertTrue('Division by Zero' in str(context.exception))
     def test_acceleration_update_identity(self):
