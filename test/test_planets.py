@@ -44,7 +44,7 @@ class TestPlanets(unittest.TestCase):
         others = [planetD]
         with self.assertRaises(Exception) as context:
              self.planetA.update_acceleration(others)   
-        self.assertTrue('Division bZero' in str(context.exception))
+        self.assertTrue('Division by Zero' in str(context.exception))
     def test_acceleration_update_identity(self):
         initial = np.copy(self.planetA.acceleration)
         others = [self.planetB,self.planetC]
