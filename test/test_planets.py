@@ -45,6 +45,13 @@ class TestPlanets(unittest.TestCase):
         with self.assertRaises(ValueError) as context:
              self.planetA.update_acceleration(others)   
         self.assertTrue('Division by Zero' in str(context.exception))
+    def test_acceleration_update_identity(self):
+        initial = np.copy(self.planetA.acceleration)
+        others = [self.planetB,self.planetC]
+        self.planetC.position = np.array([0,0])
+        self.planetA.update_acceleration(others)
+        self.assertEqual(initial[0],self.planetA.acceleration[0])
+        self.assertEqual(initial[1],self.planetA.acceleration[1])
     def test_Euler_identity(self):
         self.planetA.velocity = np.array([0.0,0.0])
         initial_position = np.copy(self.planetA.position)
