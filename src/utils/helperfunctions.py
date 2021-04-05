@@ -1,5 +1,8 @@
-from Planet import Planet
+import sys
+sys.path.append('../src')
 import json
+from Planet import Planet
+
 def writeFile():
     """Method used to write in the files the usual planets used in the project
     """
