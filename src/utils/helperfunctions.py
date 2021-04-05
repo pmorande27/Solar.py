@@ -3,9 +3,10 @@ sys.path.append('../src')
 import json
 from Planet import Planet
 
-def writeFile():
+def writeFile(filename="CelestialObjects"):
     """Method used to write in the files the usual planets used in the project
     """
+    path = '../data/'+filename
     sun = Planet("Sun",1.989 * 10**30,0,3*500000000,"Star",0,0)
     mercury = Planet("Mercury",3.285 * 10**23,58*10**9,2*500000000,"Planet",1.989 * 10**30,0)
     Venus = Planet("Venus",4.867 *10**24 ,108200000*10**3,2*500000000,"Planet",1.989 * 10**30,0)
@@ -30,24 +31,26 @@ def writeFile():
             "simulated_radius" : str(planet.simulated_radius),
             "type": planet.type_of_object,
             })
-    with open("../data/CelestialObjects", "w") as outfile:
+    with open(path, "w") as outfile:
         json.dump(data, outfile)
-def add_planet():
+def add_planet(name,mass,orbital_radius,sim_radius,filename = "CelestialObjects"):
     """Method used to add a new Celestial Body to the file of CelestialBodies.txt in the correct json format.
     """
-    planet_name = input("Planet's name")
-    planet_mass = float(input("Planet's mass"))
-    planet_orbital_radius = float(input("Planet's orbital radius"))
-    simulated_radius = float(input("simulated radius"))
+    planet_name = name
+    planet_mass = mass
+    planet_orbital_radius = orbital_radius
+    simulated_radius = sim_radius
     data = {}
-    with open(".\data\CelestialObjects.txt") as json_file:
+    path = '../data/'+filename
+    with open(path,"r") as json_file:
             data = json.load(json_file)
-            data['Planet'].append({
+            data['Planets'].append({
             "Name" : planet_name,
             "mass" :str(planet_mass),
             "orbital_radius" : str(planet_orbital_radius),
             "simulated_radius" : str(simulated_radius),
             "type": "Planet"
             })
-    with open("../data/CelestialObjects", "w") as outfile:
+    with open(path, "w") as outfile:
+        print(data)
         json.dump(data, outfile)
