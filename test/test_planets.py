@@ -95,7 +95,13 @@ class TestPlanets(unittest.TestCase):
         expected_value = np.array([0,math.sqrt(Planet.G/(1))]) + np.array([Planet.G+Planet.G/4,0.0])*100*2/6
         self.assertEqual(expected_value[0],self.planetA.velocity[0])
         self.assertEqual(expected_value[1],self.planetA.velocity[1])
-    
+    def test_update_position_euler(self):
+        initial_position = np.copy(self.planetA.position)
+        expected_value = np.array([1.0,0.0]) + np.array([0,math.sqrt(Planet.G/(1))])*100
+        self.planetA.update_position_euler(100)
+        self.assertEqual(expected_value[0],self.planetA.position[0])
+        self.assertEqual(expected_value[1],self.planetA.position[1])
+
 
 
 
