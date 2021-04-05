@@ -15,7 +15,7 @@ class TestReader(unittest.TestCase):
 
 
     def tearDown(self):
-        os.remove("../data/test")
+        os.remove("./data/test")
 
     
     def test_WrittingFile(self):
