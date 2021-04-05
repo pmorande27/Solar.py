@@ -71,6 +71,30 @@ class TestPlanets(unittest.TestCase):
         self.assertEqual(initial_position[0],self.planetA.position[0])
         self.assertEqual(initial_position[1],self.planetA.position[1])
     
+    def test_update_position_equivalence(self):
+        initial_position = np.copy(self.planetA.position)
+        self.planetA.update_position_euler(1)
+        position_euler =np.copy(self.planetA.position)
+        self.planetA.position = np.copy(initial_position)
+        self.planetA.update_position_beeman(1)
+        position_beeman =np.copy(self.planetA.position)
+        self.assertEqual(position_beeman[0],position_euler[0])
+        self.assertEqual(position_beeman[1],position_euler[1])
+    def test_update_velocity_euler(self):
+        others = [self.planetC,self.planetB]
+        self.planetA.update_acceleration(others)
+        acceleratation = [Planet.G+Planet.G/4,0.0]
+        self.planetA.update_velocity_euler(100)
+        expected_value = np.array([0,math.sqrt(Planet.G/(1))]) + np.array([Planet.G+Planet.G/4,0.0])*100
+        self.assertEqual(expected_value[0],self.planetA.velocity[0])
+        self.assertEqual(expected_value[1],self.planetA.velocity[1])
+
+
+        
+
+
+
+
 
 
 if __name__ == "__main__":
