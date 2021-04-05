@@ -52,5 +52,4 @@ def add_planet(name,mass,orbital_radius,sim_radius,filename = "CelestialObjects"
             "type": "Planet"
             })
     with open(path, "w") as outfile:
-        print(data)
         json.dump(data, outfile)
