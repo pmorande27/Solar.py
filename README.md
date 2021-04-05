@@ -6,3 +6,4 @@ Please Make sure that you have `Python 3` installed.`Numpy` and `Matplotlib` pac
 ## Tests
 To run the tests please first go to the test directory by `cd  test` or other, then you may run `py -m unittest discover` to run all the tests, if you are in linux you might want to use `python` instead of `py`.
 Please do not try to run the tests from the root directory.
+To get the coverage I recommend `coverage.py`. To install it use: `pip install coverage` once installed and inside the test directory run: `coverage run -m source=../src unittest discover`, to generate the report you can either execute `coverage report -m` or `coverage html` to get the information in the terminal or as html respectively.
