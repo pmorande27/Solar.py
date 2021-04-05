@@ -31,5 +31,6 @@ jobs:
       uses: codecov/codecov-action@v1
       with:
         fail_ci_if_error: true
+        token: "6aa7d993-de01-42c7-a2aa-4cea9083185b"
       
 
