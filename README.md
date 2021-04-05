@@ -7,6 +7,6 @@ While there exists an analytical solution for the 2-body problem, there is none 
 ## Installation
 Please Make sure that you have `Python 3` installed.`Numpy` and `Matplotlib` packages are also used in this program and should be installed.
 ## Tests
-To run the tests please first go to the test directory by `cd  test` or other, then you may run `py -m unittest discover` to run all the tests, if you are in linux you might want to use `python` instead of `py`.
+To run the tests you may run `py -m unittest discover`. This command will run all tests, if you are in linux you might want to use `python` instead of `py`.
 Please do not try to run the tests from the root directory.
-To get the coverage I recommend `coverage.py`. To install it use: `pip install coverage` once installed and inside the test directory run: `coverage run -m source=../src unittest discover`, to generate the report you can either execute `coverage report -m` or `coverage html` to get the information in the terminal or as html respectively.
+To get the coverage I recommend `coverage.py`. To install it use: `pip install coverage` once installed and in the root repository run: `coverage run -m source=../src unittest discover`, to generate the report you can either execute `coverage report -m` or `coverage html` to get the information in the terminal or as html respectively.
