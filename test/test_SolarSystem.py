@@ -60,6 +60,34 @@ class TestSolarSystem(unittest.TestCase):
     def test_distance_to_earth(self):
         expected_value = 6.371*10**6
         self.assertEqual(expected_value,self.system_probe.distanceToEarth())
+    def test_euler(self):
+        planetA = Planet("B",1,1,1,"Planet",1,10000)
+        star = Planet("A",1,1,1,"Star",0,10000)
+        planetB = Planet("B",1,2,1,"Planet",1,10000)
+        planetB.position = np.array([-1.0,0.0])
+        planetB.velocity = np.array([0.0,-planetA.velocity[1]])
+        system = SolarSystem(3600,1000,Options.NORMAL_RUN,"CelestialObjects")
+        system.celestial_bodies = [star,planetA,planetB]
+        system.update_initial_acceleration()
+        for i in range(100):
+            system.update_euler()
+        self.assertEqual(0.0,star.acceleration[0])
+        self.assertEqual(0.0,star.acceleration[1])
+    def test_beeman(self):
+        planetA = Planet("B",1,1,1,"Planet",1,10000)
+        star = Planet("A",1,1,1,"Star",0,10000)
+        planetB = Planet("B",1,2,1,"Planet",1,10000)
+        planetB.position = np.array([-1.0,0.0])
+        planetB.velocity = np.array([0.0,-planetA.velocity[1]])
+        system = SolarSystem(3600,1000,Options.NORMAL_RUN,"CelestialObjects")
+        system.celestial_bodies = [star,planetA,planetB]
+        system.update_initial_acceleration()
+        for i in range(100):
+            system.update_beeman()
+        self.assertEqual(0.0,star.acceleration[0])
+        self.assertEqual(0.0,star.acceleration[1])
+
+
 
         
 
