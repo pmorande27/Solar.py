@@ -24,6 +24,9 @@ jobs:
       run: |
         cd test
         python -m unittest discover
+    - name: getCoverage
+      run: |
+        coverage run -m --source=src unittest discover
     - name: "Upload coverage to Codecov"
       uses: codecov/codecov-action@v1
       with:
