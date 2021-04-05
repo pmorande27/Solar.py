@@ -52,6 +52,12 @@ class TestPlanets(unittest.TestCase):
         self.planetA.update_acceleration(others)
         self.assertEqual(initial[0],self.planetA.acceleration[0])
         self.assertEqual(initial[1],self.planetA.acceleration[1])
+    def test_acceleration_update(self):
+        others = [self.planetB,self.planetC]
+        expected_value = [Planet.G+Planet.G/4,0.0]
+        self.planetA.update_acceleration(others)
+        self.assertEqual(expected_value[0],self.planetA.acceleration[0])
+        self.assertEqual(expected_value[1],self.planetA.acceleration[1])
     def test_Euler_identity(self):
         self.planetA.velocity = np.array([0.0,0.0])
         initial_position = np.copy(self.planetA.position)
