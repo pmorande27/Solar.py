@@ -2,7 +2,7 @@ import json
 import math
 from Planet import Planet
 import numpy as np
-from Options import Options
+from options import Options
 
 
 class SolarSystem(object):

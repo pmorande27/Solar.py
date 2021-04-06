@@ -2,7 +2,7 @@ import sys
 sys.path.append("./src")
 from animate import animation
 from SolarSystem import SolarSystem
-from Options import Options
+from options import Options
 import matplotlib
 import unittest
 import unittest.mock as mock

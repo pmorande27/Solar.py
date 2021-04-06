@@ -4,7 +4,7 @@ from SolarSystem import SolarSystem
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
-from Options import Options
+from options import Options
 
 
 def main():

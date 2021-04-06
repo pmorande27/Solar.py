@@ -5,7 +5,7 @@ sys.path.append('./src')
 from SolarSystem import SolarSystem
 sys.path.append('./src/utils')
 import helperfunctions
-from Options import Options
+from options import Options
 import numpy as np
 import math
 from Planet import Planet
