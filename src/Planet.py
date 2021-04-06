@@ -146,15 +146,3 @@ class Planet(object):
             return 1
         else:
             return -1
-
-    @staticmethod
-    def angleBetweenPlanets(planet_A, planet_B):
-        """Static Method used to find theangle between the position vectors of two planets (A and B).
-        Args:
-            planet_A (Planet): Body A
-            planet_B (Planet): Body B 
-
-        Returns:
-            float: anlge between the two position vectors.
-        """
-        pass
