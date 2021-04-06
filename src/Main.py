@@ -16,10 +16,11 @@ def main():
     system = SolarSystem(1000,10.5013*10**3)
     animate = animation(system)
     """
-    system = SolarSystem(100, 10.175 * 10 ** 3,Options.PROBE_RUN,"CelestialObjects")
+    system = SolarSystem(10000, 11.5605 * 10 ** 3,Options.PROBE_RUN,"CelestialObjects")
     animate = animation(system)
     #animate.plot()
-    animate.scatterplot(10000*30)
+    animate.scatterplot(10000*5)
+    #print(searchVelocityToMars(10000*2,1,11.56 * 10 ** 3))
     # EnergyGraphComparisson()
 
 
@@ -40,7 +41,7 @@ def EnergyGraphComparisson(updates):
     plt.show()
 
 
-def searchVelocityToMars(updates,tries):
+def searchVelocityToMars(updates,tries,velocity):
     """Function used to searc for the optimal velocity for the probe to approach mars
     it will do it by try and error over different values.
 
@@ -48,14 +49,14 @@ def searchVelocityToMars(updates,tries):
         (float,float): tuple of distance the minimum distance found and the speed needed to
         accomplish it.
     """
-    start_velocity = 10.175 * 10 ** 3
-    system = SolarSystem(100, start_velocity, Options.PROBE_RUN,"CelestialObjects")
+    start_velocity = velocity
+    system = SolarSystem(10000, start_velocity, Options.PROBE_RUN,"CelestialObjects")
     min_v = 0
     increment = 0.001
     minimum = system.distanceToMars()
     for i in range(tries):
-        system = SolarSystem(240, start_velocity + i * increment, Options.PROBE_RUN,"CelestialObjects")
-        for i in range(updates):
+        system = SolarSystem(10000, start_velocity + i * increment, Options.PROBE_RUN,"CelestialObjects")
+        for j in range(updates):
             system.update_beeman()
             if minimum >= system.distanceToMars():
                 minimum = system.distanceToMars()
