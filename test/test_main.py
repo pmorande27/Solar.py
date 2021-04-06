@@ -1,7 +1,7 @@
 import sys
 sys.path.append("./src")
 import main
-from animate import animation
+from animate import Animation
 from solar_system import SolarSystem
 from options import Options
 import unittest
@@ -32,7 +32,7 @@ class MainTest(unittest.TestCase):
         main.searchVelocityToMars(100,10,10)
         self.assertEqual(2.5*100*10+1,mock.call_count)
 
-    @mock.patch.object(animation,"scatterplot")
+    @mock.patch.object(Animation,"scatterplot")
     def test_main(self,mock):
         main.main()
         mock.assert_called_once()

@@ -4,7 +4,7 @@ import matplotlib.patches as patches
 import numpy as np
 import math
 from matplotlib.animation import FuncAnimation
-class animation(object):
+class Animation(object):
     """Class used to create the animation of Mars, Deimos and Phobos
     """
     def __init__(self, SolarSystem):

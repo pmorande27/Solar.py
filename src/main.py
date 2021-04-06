@@ -1,4 +1,4 @@
-from animate import animation
+from animate import Animation
 from Planet import Planet
 from solar_system import SolarSystem
 import numpy as np
@@ -17,7 +17,7 @@ def main():
     animate = animation(system)
     """
     system = SolarSystem(10000, 11.5605 * 10 ** 3,Options.PROBE_RUN,"CelestialObjects")
-    animate = animation(system)
+    animate = Animation(system)
     #animate.plot()
     animate.scatterplot(10000*5)
     #print(searchVelocityToMars(10000*2,1,11.56 * 10 ** 3))
