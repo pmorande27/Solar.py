@@ -1,4 +1,5 @@
 import json
+import math
 from Planet import Planet
 import numpy as np
 from Options import Options
@@ -20,22 +21,33 @@ class SolarSystem(object):
         self.vRelative = vRelative
         self.celestial_bodies = self.inputFiles(options,filename)
         self.update_initial_acceleration()
+        self.options = options
         if (options ==Options.NORMAL_RUN):
             self.time_step = time_step
             self.initial = False
         else:
-            self.time_step = 50
+            self.set_up_mars()
+            self.time_step = 20
             self.real_time_step = time_step
             self.initial = True
         self.time = 0
         self.file = open("./data/energy", "w")
-        self.file.write(str(self.getEnergy()) + "\n")
+        #self.file.write(str(self.getEnergy()) + "\n")
         self.updates = 0
 
     def __del__(self):
         """Deconstructor of the class, used to close the file.
         """
         self.file.close()
+    def set_up_mars(self):
+        mars = self.celestial_bodies[4]
+        angle = 44*math.pi*2/360
+        x_pos = math.cos(angle)
+        y_pos = math.sin(angle)
+        mars.position = np.array([x_pos*mars.orbital_radius,y_pos*mars.orbital_radius])
+        velocity = np.linalg.norm(mars.velocity)
+        mars.velocity = mars.getInitialVelocity(mars.position,velocity)
+
     
     def distanceToEarth(self):
         """function used to calculate the distance from the probe to Earth at a given time.
@@ -102,10 +114,17 @@ class SolarSystem(object):
         Returns:
             int: Energy of the system after the update
         """
-        if self.initial:
-            if self.distanceToEarth() >= 10**8:
-                self.initial = False
+        if self.options==Options.PROBE_RUN:
+            if self.initial:
+                if self.distanceToEarth() >= 10**8:
+                    self.initial = False
+                    self.time_step = self.real_time_step
+            elif self.distanceToMars() >= 10**8*2 and not self.initial:
                 self.time_step = self.real_time_step
+            else:
+                
+                self.time_step = 10
+                #print(self.distanceToMars())
         kinetic = 0
         self.updates += 1
 
@@ -121,7 +140,7 @@ class SolarSystem(object):
             planet = others.pop(k)
             planet.update_velocity_beeman(self.time_step, others)
         energy = self.getEnergy()
-        self.file.write(str(energy)+"\n")
+        #self.file.write(str(energy)+"\n")
         self.time += self.time_step
         return energy
 
