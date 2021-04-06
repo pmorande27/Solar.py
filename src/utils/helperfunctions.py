@@ -6,7 +6,7 @@ from Planet import Planet
 def writeFile(filename="CelestialObjects"):
     """Method used to write in the files the usual planets used in the project
     """
-    path = '../data/'+filename
+    path = './data/'+filename
     sun = Planet("Sun",1.989 * 10**30,0,3*500000000,"Star",0,0)
     mercury = Planet("Mercury",3.285 * 10**23,58*10**9,2*500000000,"Planet",1.989 * 10**30,0)
     Venus = Planet("Venus",4.867 *10**24 ,108200000*10**3,2*500000000,"Planet",1.989 * 10**30,0)
@@ -41,7 +41,7 @@ def add_planet(name,mass,orbital_radius,sim_radius,filename = "CelestialObjects"
     planet_orbital_radius = orbital_radius
     simulated_radius = sim_radius
     data = {}
-    path = '../data/'+filename
+    path = './data/'+filename
     with open(path,"r") as json_file:
             data = json.load(json_file)
             data['Planets'].append({

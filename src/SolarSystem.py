@@ -28,7 +28,7 @@ class SolarSystem(object):
             self.real_time_step = time_step
             self.initial = True
         self.time = 0
-        self.file = open("../data/energy", "w")
+        self.file = open("./data/energy", "w")
         self.file.write(str(self.getEnergy()) + "\n")
         self.updates = 0
 
@@ -56,7 +56,7 @@ class SolarSystem(object):
             [Planet]: list of all the planets (object type Planet)
         """
         planets = []
-        path = "../data/"+filename
+        path = "./data/"+filename
         with open(path) as json_file:
             data = json.load(json_file)
             for star in data['Star']:
@@ -133,7 +133,7 @@ class SolarSystem(object):
         Returns:
             float: distance from the probe to mars
         """
-        return  np.linalg.norm(self.celestial_bodies[len(self.celestial_bodies) - 1].position,
+        return  np.linalg.norm(self.celestial_bodies[len(self.celestial_bodies) - 1].position-
                                self.celestial_bodies[4].position)
 
     def update_euler(self):

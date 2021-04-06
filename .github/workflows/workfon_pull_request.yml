@@ -1,10 +1,9 @@
 # This workflow will upload a Python Package using Twine when a release is created
 # For more information see: https://help.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions#publishing-to-package-registries
 
-name: Upload Python Package
+name: Pull-Request-Action
 
-on: [push]
-
+on: [pull_request,push]
 jobs:
   deploy:
 
@@ -22,10 +21,23 @@ jobs:
         pip install setuptools wheel twine
         pip install matplotlib
         pip install coverage
-    - name: Build and publish
-      env:
-        TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
-        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+    - name: Run Tests
       run: |
-        cd test
         python -m unittest discover
+    - name: getCoverage
+      run: |
+        coverage run -m --source=src unittest discover
+    - name: "Upload coverage to Codecov"
+      uses: codecov/codecov-action@v1
+      with:
+        fail_ci_if_error: true
+        token: "6aa7d993-de01-42c7-a2aa-4cea9083185b"
+    - name: Wemake Python Stylguide
+      uses: wemake-services/wemake-python-styleguide@0.13.4
+      continue-on-error: true
+      with:
+          reporter: 'github-pr-review'
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+

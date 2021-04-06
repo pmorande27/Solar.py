@@ -1,7 +1,7 @@
 import unittest
 import sys
 import os
-sys.path.append('../src')
+sys.path.append('./src')
 from Planet import Planet
 from Options import Options
 import numpy as np
