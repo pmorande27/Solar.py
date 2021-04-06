@@ -1,6 +1,6 @@
 import sys
 sys.path.append("./src")
-import Main
+import main
 from animate import animation
 from solar_system import SolarSystem
 from options import Options
