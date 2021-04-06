@@ -133,7 +133,7 @@ class SolarSystem(object):
         Returns:
             float: distance from the probe to mars
         """
-        return  np.linalg.norm(self.celestial_bodies[len(self.celestial_bodies) - 1].position,
+        return  np.linalg.norm(self.celestial_bodies[len(self.celestial_bodies) - 1].position-
                                self.celestial_bodies[4].position)
 
     def update_euler(self):
