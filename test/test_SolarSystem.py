@@ -2,7 +2,7 @@ import unittest
 import sys
 import os
 sys.path.append('./src')
-from SolarSystem import SolarSystem
+from solar_system import SolarSystem
 sys.path.append('./src/utils')
 import helperfunctions
 from options import Options
@@ -31,22 +31,22 @@ class TestSolarSystem(unittest.TestCase):
                 self.assertEqual(0.0,planet.acceleration[1],planet.name)
     def test_potential_energy_simple(self):
         expected_value = -Planet.G
-        self.assertEqual(expected_value,self.system_simple.getPotentialEnergy())
+        self.assertEqual(expected_value,self.system_simple.get_potential_energy())
     def test_kinetic_energy_simple(self):
         expected_value = 1/2 * 1 * Planet.G
-        self.assertEqual(expected_value,self.system_simple.getKineticenergy())
+        self.assertEqual(expected_value,self.system_simple.get_kinetic_energy())
     def test_kinetic_energy(self):
         expected_value = 0
         for body in self.system.celestial_bodies:
             expected_value+= 1/2 *body.mass * np.linalg.norm(body.velocity)**2
-        self.assertEqual(expected_value,self.system.getKineticenergy())
+        self.assertEqual(expected_value,self.system.get_kinetic_energy())
     def test_potential_energy(self):
         expected_value = 0
         for bodyA in self.system.celestial_bodies:
             for bodyB in self.system.celestial_bodies:
                 if bodyA.name != bodyB.name:
                     expected_value += -Planet.G * bodyB.mass*0.5 *bodyA.mass/(np.linalg.norm(bodyB.position-bodyA.position))
-        self.assertEqual(expected_value,self.system.getPotentialEnergy())
+        self.assertEqual(expected_value,self.system.get_potential_energy())
     def test_total_energy(self):
         potential = 0
         for bodyA in self.system.celestial_bodies:
@@ -56,10 +56,10 @@ class TestSolarSystem(unittest.TestCase):
         kinetic_energy = 0
         for body in self.system.celestial_bodies:
             kinetic_energy+= 1/2 *body.mass * np.linalg.norm(body.velocity)**2
-        self.assertEqual(potential+kinetic_energy,self.system.getEnergy())
+        self.assertEqual(potential+kinetic_energy,self.system.get_energy())
     def test_distance_to_earth(self):
         expected_value = 6.371*10**6
-        self.assertEqual(expected_value,self.system_probe.distanceToEarth())
+        self.assertEqual(expected_value,self.system_probe.distance_to_earth())
     def test_euler(self):
         planetA = Planet("B",1,1,1,"Planet",1,10000)
         star = Planet("A",1,1,1,"Star",0,10000)

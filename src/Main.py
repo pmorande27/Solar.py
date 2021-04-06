@@ -1,6 +1,6 @@
 from animate import Animation
 from Planet import Planet
-from SolarSystem import SolarSystem
+from solar_system import SolarSystem
 import numpy as np
 import matplotlib
 matplotlib.use("TkAgg")
@@ -63,8 +63,8 @@ def searchVelocityToMars():
         system = SolarSystem(240, start_velocity + i * increment)
         for i in range(updates):
             system.update_beeman()
-            if minimum > system.distanceToMars():
-                minimum = system.distanceToMars()
+            if minimum > system.distance_to_mars():
+                minimum = system.distance_to_mars()
                 min_v = start_velocity + i * increment
                 print(minimum)
     return (minimum, min_v)

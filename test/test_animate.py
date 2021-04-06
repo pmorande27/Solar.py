@@ -2,7 +2,7 @@ import sys
 sys.path.append("./test")
 
 from animate import Animation
-from SolarSystem import SolarSystem
+from solar_system import SolarSystem
 from options import Options
 import matplotlib
 import unittest
