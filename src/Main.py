@@ -1,6 +1,6 @@
 from animate import animation
 from Planet import Planet
-from SolarSystem import SolarSystem
+from solar_system import SolarSystem
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
