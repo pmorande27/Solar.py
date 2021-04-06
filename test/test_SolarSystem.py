@@ -86,3 +86,10 @@ class TestSolarSystem(unittest.TestCase):
             system.update_beeman()
         self.assertEqual(0.0,star.acceleration[0])
         self.assertEqual(0.0,star.acceleration[1])
+    def test_timeStep(self):
+        self.system_probe.update_beeman()
+        self.assertEqual(self.system_probe.time_step,50)
+        for i in range(460):
+            self.system_probe.update_beeman()
+        self.assertEqual(self.system_probe.time_step,3600)
+
