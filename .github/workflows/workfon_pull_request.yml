@@ -21,6 +21,7 @@ jobs:
         pip install setuptools wheel twine
         pip install matplotlib
         pip install coverage
+        pip install wemake-python-styleguide
     - name: Run Tests
       run: |
         python -m unittest discover
