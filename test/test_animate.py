@@ -1,6 +1,5 @@
 import sys
-sys.path.append("./test")
-
+sys.path.append("./src")
 from animate import animation
 from SolarSystem import SolarSystem
 from Options import Options
