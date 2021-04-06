@@ -3,7 +3,7 @@ import sys
 import os
 sys.path.append('./src')
 from Planet import Planet
-from Options import Options
+from options import Options
 import numpy as np
 import math
 class TestPlanets(unittest.TestCase):

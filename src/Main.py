@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib
 matplotlib.use("TkAgg")
 import matplotlib.pyplot as plt
-from Options import Options
+from options import Options
 
 
 def main():

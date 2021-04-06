@@ -5,7 +5,7 @@ sys.path.append('./src/utils')
 import helperfunctions
 sys.path.append('./src')
 from SolarSystem import SolarSystem
-from Options import Options
+from options import Options
 
 
 class TestReader(unittest.TestCase):
