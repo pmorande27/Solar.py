@@ -1,7 +1,7 @@
 import sys
 sys.path.append("./src")
 from animate import animation
-from SolarSystem import SolarSystem
+from solar_system import SolarSystem
 from options import Options
 import matplotlib
 import unittest

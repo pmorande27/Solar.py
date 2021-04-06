@@ -2,7 +2,7 @@ import unittest
 import sys
 import os
 sys.path.append('./src')
-from SolarSystem import SolarSystem
+from solar_system import SolarSystem
 sys.path.append('./src/utils')
 import helperfunctions
 from options import Options

@@ -4,7 +4,7 @@ import os
 sys.path.append('./src/utils')
 import helperfunctions
 sys.path.append('./src')
-from SolarSystem import SolarSystem
+from solar_system import SolarSystem
 from options import Options
 
 
