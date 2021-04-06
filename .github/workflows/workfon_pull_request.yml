@@ -21,8 +21,6 @@ jobs:
         pip install setuptools wheel twine
         pip install matplotlib
         pip install coverage
-        pip install wemake-python-styleguide
-        pip install flake8-isort==3.0.1
     - name: Run Tests
       run: |
         python -m unittest discover
