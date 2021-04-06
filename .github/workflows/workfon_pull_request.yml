@@ -34,12 +34,5 @@ jobs:
       with:
         fail_ci_if_error: true
         token: "6aa7d993-de01-42c7-a2aa-4cea9083185b"
-    - name: Wemake Python Stylguide
-      uses: wemake-services/wemake-python-styleguide@0.13.4
-      continue-on-error: true
-      with:
-          reporter: 'github-pr-review'
-      env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
 
