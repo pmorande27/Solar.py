@@ -17,6 +17,7 @@ class Planet(object):
             central_mass (float): mass for the centras potential approximation to calculate the initial variables.
             vRelative (float): relativ velocity, only used for the probe case.
         """
+        self.periods = []
         self.time = 0
         self.name = name
         self.mass = mass
@@ -36,7 +37,7 @@ class Planet(object):
         # Case for the Probe
         elif type_of_object == "Probe":
             self.position = np.array([orbital_radius, 6.371 * 10 ** 6])
-            self.velocity = np.array([0.0, 29.8 * 10 ** 3 + vRelative])
+            self.velocity =self.getInitialVelocity(self.position,29.8 * 10 ** 3 + vRelative)
             self.sign = 1
         # Set-up acceleration and radius
         self.acceleration = np.array([0.0,0.0])
@@ -88,6 +89,8 @@ class Planet(object):
         Args:
             time_step (float): time between updates.
         """
+        self.time += time_step
+
         self.position += self.velocity * time_step + (
                     self.acceleration * 4 - self.acceleration_prev) * time_step * time_step / 6
 
@@ -96,10 +99,9 @@ class Planet(object):
             self.sign = self.get_y_sign()
             if previous < self.sign:
                 time = self.time / (3600 * 24)
+                self.periods.append(time)
                 print("Orbital Period of " + self.name + " is " + str(time) + " days")
                 self.time = 0
-            else:
-                self.time += time_step
 
     def update_velocity_beeman(self, time_step, others):
         """Method used to update the velocity of a Celestial Body using Beeman's method. 
@@ -146,3 +148,10 @@ class Planet(object):
             return 1
         else:
             return -1
+    def get_angle(self):
+        radian = math.atan2(self.position[1],self.position[0])
+        angle = radian*360/(2*math.pi)
+        if angle <0:
+            return angle +360
+        else:
+            return angle
