@@ -22,7 +22,7 @@ class SolarSystem(object):
         self.celestial_bodies = self.inputFiles(options,filename)
         self.update_initial_acceleration()
         self.options = options
-        if (options ==Options.NORMAL_RUN):
+        if (options !=Options.PROBE_RUN):
             self.time_step = time_step
             self.initial = False
         else:
@@ -75,7 +75,7 @@ class SolarSystem(object):
                 planets.append(Planet(star['Name'], float(star['mass']), float(star['orbital_radius']),
                                       float(star['simulated_radius']), star['type'], 0, self.vRelative))
             for planet in data['Planets']:
-                if(option == Options.NORMAL_RUN and planet['Name'] =="Probe"):
+                if(option != Options.PROBE_RUN and planet['Name'] =="Probe"):
                     continue
                 planets.append(Planet(planet['Name'], float(planet['mass']), float(planet['orbital_radius']),
                                       float(planet['simulated_radius']), planet['type'], float(star['mass']),
@@ -119,20 +119,23 @@ class SolarSystem(object):
                 if self.distanceToEarth() >= 10**8:
                     self.initial = False
                     self.time_step = self.real_time_step
-            elif self.distanceToMars() >= 10**8*2 and not self.initial:
+            elif self.distanceToMars() >= 10**8 and not self.initial:
                 self.time_step = self.real_time_step
             else:
                 
-                self.time_step = 10
+                self.time_step = 50
                 #print(self.distanceToMars())
         kinetic = 0
         self.updates += 1
+        angles = []
 
         # Update acceleration and velocity of all planets from time t-timestep to time t
         for k in range(len(self.celestial_bodies)):
             others = self.celestial_bodies[:]
             planet = others.pop(k)
             planet.update_position_beeman(self.time_step)
+            if (planet.name != "Sun"):
+                angles.append(planet.get_angle())
 
         # Update position of all planets from time t-timestep to time t
         for k in range(len(self.celestial_bodies)):
@@ -140,11 +143,28 @@ class SolarSystem(object):
             planet = others.pop(k)
             planet.update_velocity_beeman(self.time_step, others)
         energy = self.getEnergy()
+
         #self.file.write(str(energy)+"\n")
         self.time += self.time_step
+        if self.options == Options.CHECK_ALINGMENT:
+            initial_angle = angles[0]
+            aling = True
+            for i in range(1,len(angles)):
+                if not self.check_angles(initial_angle,angles[i],7):
+                    aling = False
+                    break
+            if aling and self.time/(3600*24*365)>1 :
+                print("Alingment "+ str(self.time/(3600*24*365)))
+
+
         return energy
 
-
+    def check_angles(self,angle_one,angle_two,window):
+        diff_one = (angle_one-window)%360
+        diff_two = (angle_one+window)%360
+        if (diff_one < diff_two):
+            return diff_one <= angle_two and angle_two <= diff_two
+        return diff_one <= angle_two or angle_two <= diff_two
     def distanceToMars(self):
         """function used to calculate the distance from the probe to mars at a given time.
         The Probe's position it is assumed to be the last in the list and mars the 5th one.
