@@ -16,12 +16,29 @@ def main():
     system = SolarSystem(1000,10.5013*10**3)
     animate = animation(system)
     """
-    system = SolarSystem(10000, 11.5605 * 10 ** 3,Options.PROBE_RUN,"CelestialObjects")
+    system = SolarSystem(3600, 11.5517 * 10 ** 3,Options.PROBE_RUN,"CelestialObjects")
     animate = Animation(system)
+    #11.56
     #animate.plot()
-    animate.scatterplot(10000*5)
-    #print(searchVelocityToMars(10000*2,1,11.56 * 10 ** 3))
-    # EnergyGraphComparisson()
+    #periods_graph(10000*10)
+    animate.scatterplot(10000*2)
+    #print(searchVelocityToMars(10000,1,11.551 * 10 ** 3))
+    #EnergyGraphComparisson(10000*2)
+def periods_graph(updates):
+    system = SolarSystem(3600, 10.175 * 10 ** 3, Options.NORMAL_RUN,"CelestialObjects")
+    for i in range(updates):
+        system.update_beeman()
+    l = 0
+    actual_values = [88.0,224.7,365.2,687.0	]
+    for j in system.celestial_bodies:
+
+        if j.name != "Sun":
+            period = sum(j.periods)/(len(j.periods))
+            close_to = period/actual_values[l]
+            l+=1
+            print("The average period of "+j.name+" is: "+ str(close_to))
+
+
 
 
 def EnergyGraphComparisson(updates):
@@ -29,14 +46,16 @@ def EnergyGraphComparisson(updates):
     to show conservation (or not conservation) of energy in both methods
     """
     system = SolarSystem(3600, 10.175 * 10 ** 3, Options.NORMAL_RUN,"CelestialObjects")
-    energy_1 = []
+    energy_1 = [system.getEnergy()]
     system2 = SolarSystem(3600, 10.175 * 10 ** 3, Options.NORMAL_RUN,"CelestialObjects")
-    energy_2 = []
+    energy_2 = [system2.getEnergy()]
     iterate = updates
-    iterations = [i for i in range(iterate)]
+    iterations = [i*3600 for i in range(iterate+1)]
     for i in range(iterate):
         energy_1.append(system.update_beeman())
         energy_2.append(system2.update_euler())
+    plt.xlabel('time(s)')
+    plt.ylabel('Energy [J]')
     plt.plot(iterations, energy_1, iterations, energy_2)
     plt.show()
 
@@ -50,12 +69,12 @@ def searchVelocityToMars(updates,tries,velocity):
         accomplish it.
     """
     start_velocity = velocity
-    system = SolarSystem(10000, start_velocity, Options.PROBE_RUN,"CelestialObjects")
+    system = SolarSystem(3600, start_velocity, Options.PROBE_RUN,"CelestialObjects")
     min_v = 0
     increment = 0.001
     minimum = system.distanceToMars()
     for i in range(tries):
-        system = SolarSystem(10000, start_velocity + i * increment, Options.PROBE_RUN,"CelestialObjects")
+        system = SolarSystem(3600, start_velocity + i * increment, Options.PROBE_RUN,"CelestialObjects")
         for j in range(updates):
             system.update_beeman()
             if minimum >= system.distanceToMars():
