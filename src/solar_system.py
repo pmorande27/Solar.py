@@ -32,7 +32,7 @@ class SolarSystem(object):
             self.initial = True
         self.time = 0
         self.file = open("./data/energy", "w")
-        #self.file.write(str(self.getEnergy()) + "\n")
+        #self.file.write(str(self.get_energy()) + "\n")
         self.updates = 0
 
     def __del__(self):
@@ -83,7 +83,7 @@ class SolarSystem(object):
                                       self.vRelative,planet['colour']))
         return planets
 
-    def getKineticenergy(self):
+    def get_kinetic_energy(self):
         """Function used to obtain the kinetic energy of the system at a given time.
         The Kinetic energy of the system is calculated by iterating through all the bodies on a system and
         adding the individual contributions by the usual formaula, K = 1/2mv^2.
@@ -97,14 +97,14 @@ class SolarSystem(object):
             kinetic += planet.mass * 0.5 * np.linalg.norm(planet.velocity)** 2
         return kinetic
 
-    def getEnergy(self):
+    def get_energy(self):
         """Function used to get the total energy of the system, which is the sum of the kinetic energy and potential 
         energy at a given time
 
         Returns:
             float: value of the total energy.
         """
-        return self.getPotentialEnergy() + self.getKineticenergy()
+        return self.get_potential_energy() + self.get_kinetic_energy()
 
     def update_beeman(self):
         """Method used to update the position, velocity and acceleration of a list of planets using 
@@ -143,7 +143,7 @@ class SolarSystem(object):
             others = self.celestial_bodies[:]
             planet = others.pop(k)
             planet.update_velocity_beeman(self.time_step, others)
-        energy = self.getEnergy()
+        energy = self.get_energy()
 
         #self.file.write(str(energy)+"\n")
         self.time += self.time_step
@@ -187,7 +187,7 @@ class SolarSystem(object):
             others = self.celestial_bodies[:]
             planet = others.pop(k)
             planet.update_position_euler(self.time_step)
-        energy = self.getEnergy()
+        energy = self.get_energy()
         return energy
 
     def update_initial_acceleration(self):
@@ -199,7 +199,7 @@ class SolarSystem(object):
             planet.update_acceleration(others)
             planet.acceleration_prev = planet.acceleration
 
-    def getPotentialEnergy(self):
+    def get_potential_energy(self):
         """Function used to get the value of the potential energy of the system at a given time.
         The energy is given by the sum of the individual contributions, each pair of bodies contribute whith
         -GmM/r^2.

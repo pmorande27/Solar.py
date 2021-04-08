@@ -123,9 +123,9 @@ class Animation(object):
         to show conservation (or not conservation) of energy in both methods
         """
         system = SolarSystem(3600, 10.175 * 10 ** 3, Options.NORMAL_RUN,"CelestialObjects")
-        energy_1 = [system.getEnergy()]
+        energy_1 = [system.get_energy()]
         system2 = SolarSystem(3600, 10.175 * 10 ** 3, Options.NORMAL_RUN,"CelestialObjects")
-        energy_2 = [system2.getEnergy()]
+        energy_2 = [system2.get_energy()]
         iterate = updates
         iterations = [i*3600 for i in range(iterate+1)]
         for i in range(iterate):
