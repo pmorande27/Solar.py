@@ -34,7 +34,8 @@ class Animation(object):
                 positions[i].append((planets[i].position[0],planets[i].position[1]))
         for j in range(len(positions)):
             position_x,position_y = zip(*positions[j])
-            plt.plot(position_x,position_y)
+            plt.plot(position_x,position_y,color=self.System.celestial_bodies[j].colour,label =self.System.celestial_bodies[j].name )
+        plt.legend(loc="upper left")
         plt.show()
 
 
@@ -75,12 +76,11 @@ class Animation(object):
         ax.set_xlim(xmin - 1, xmax)
         ax.set_ylim(ymin - 1, ymax)
         self.patches = []
-        colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
         planets = self.System.celestial_bodies
         #Get position of the planets and assing it to the circles.
         for planet in range(len(planets)):
             a = plt.Circle((planets[planet].position[0], planets[planet].position[1]),
-                           planets[planet].simulated_radius, color=colors[planet], animated=True)
+                           planets[planet].simulated_radius, color=planets[planet].colour, animated=True)
             self.patches.append(a)
 
         # add circles to axes
