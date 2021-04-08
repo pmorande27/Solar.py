@@ -23,11 +23,11 @@ def main():
     #animate.plot()
     #Animation.periods_graph(10000*2)
     animate.scatter_plot(10000*2)
-    #print(searchVelocityToMars(10000,1,11.551 * 10 ** 3))
+    #print(search_velocity_to_mars(10000,1,11.551 * 10 ** 3))
     #Animation.energy_graph_comparisson(10000*2)
 
 
-def searchVelocityToMars(updates,tries,velocity):
+def search_velocity_to_mars(updates,tries,velocity):
     """Function used to searc for the optimal velocity for the probe to approach mars
     it will do it by try and error over different values.
 
