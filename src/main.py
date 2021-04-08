@@ -9,12 +9,12 @@ def main():
     """
     Main function
     """
-    system = SolarSystem(3600, 11.5517 * 10 ** 3,Options.PROBE_RUN,"CelestialObjects")
+    system = SolarSystem(3600, 11.7 * 10 ** 3,Options.PROBE_RUN,"CelestialObjects2")
     animate = Animation(system)
     #11.56
     #animate.plot()
     #Animation.periods_graph(10000*2)
-    animate.scatter_plot(10000*2)
+    animate.scatter_plot(10000*6)
     #print(search_velocity_to_mars(10000,1,11.551 * 10 ** 3))
     #Animation.energy_graph_comparisson(10000*2)
 

@@ -101,6 +101,13 @@ class Animation():
         plt.show()
     @staticmethod
     def periods_graph(updates):
+        """Method used to generate a graph with the average values of the orbital 
+        periods of the different planets on the Solar System.
+
+        Args:
+            updates (int): number of updates to the system, must be a hight number to allow
+            mars to complete its period.
+        """
         system = SolarSystem(3600, 10.175 * 10 ** 3, Options.NORMAL_RUN,"CelestialObjects")
         values = []
         for i in range(updates):

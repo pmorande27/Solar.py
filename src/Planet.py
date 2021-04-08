@@ -160,6 +160,12 @@ class Planet():
             return 1
         return -1
     def get_angle(self):
+        """Method used to get the angle that a palent makes with the horizontal line 
+        (centred in the sun)
+
+        Returns:
+            float: angle (in degrees)
+        """
         radian = math.atan2(self.position[1],self.position[0])
         angle = radian*360/(2*math.pi)
         if angle <0:
