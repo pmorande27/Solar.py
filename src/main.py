@@ -1,21 +1,13 @@
+"""File to hold the main of the project
+"""
 from animate import Animation
-from Planet import Planet
 from solar_system import SolarSystem
-import numpy as np
-import matplotlib
-import matplotlib.pyplot as plt
 from options import Options
-import matplotlib
 
 
 def main():
     """
     Main function
-    """
-    """
-    writeFile()
-    system = SolarSystem(1000,10.5013*10**3)
-    animate = animation(system)
     """
     system = SolarSystem(3600, 11.5517 * 10 ** 3,Options.PROBE_RUN,"CelestialObjects")
     animate = Animation(system)
@@ -41,7 +33,8 @@ def search_velocity_to_mars(updates,tries,velocity):
     increment = 0.001
     minimum = system.distance_to_mars()
     for i in range(tries):
-        system = SolarSystem(3600, start_velocity + i * increment, Options.PROBE_RUN,"CelestialObjects")
+        system = SolarSystem(3600, start_velocity + i * increment,
+                            Options.PROBE_RUN,"CelestialObjects")
         for j in range(updates):
             system.update_beeman()
             if minimum >= system.distance_to_mars():
