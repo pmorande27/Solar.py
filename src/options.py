@@ -6,4 +6,3 @@ class Options(Enum):
     """
     NORMAL_RUN = 1
     PROBE_RUN = 2
-    CHECK_ALINGMENT = 3
