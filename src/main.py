@@ -9,7 +9,7 @@ def main():
     """
     Main function
     """
-    system = SolarSystem(3600, 11.7 * 10 ** 3,Options.PROBE_RUN,"CelestialObjects2")
+    system = SolarSystem(3600, 11.7 * 10 ** 3,Options.PROBE_RUN,"CelestialObjects")
     animate = Animation(system)
     #11.56
     #animate.plot()
