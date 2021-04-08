@@ -120,12 +120,12 @@ class SolarSystem(object):
                 if self.distanceToEarth() >= 10**8:
                     self.initial = False
                     self.time_step = self.real_time_step
-            elif self.distanceToMars() >= 10**8 and not self.initial:
+            elif self.distance_to_mars() >= 10**8 and not self.initial:
                 self.time_step = self.real_time_step
             else:
                 
                 self.time_step = 50
-                #print(self.distanceToMars())
+                #print(self.distance_to_mars())
         kinetic = 0
         self.updates += 1
         angles = []
@@ -149,7 +149,7 @@ class SolarSystem(object):
         self.time += self.time_step
         return energy
 
-    def distanceToMars(self):
+    def distance_to_mars(self):
         """function used to calculate the distance from the probe to mars at a given time.
         The Probe's position it is assumed to be the last in the list and mars the 5th one.
 

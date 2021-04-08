@@ -39,13 +39,13 @@ def searchVelocityToMars(updates,tries,velocity):
     system = SolarSystem(3600, start_velocity, Options.PROBE_RUN,"CelestialObjects")
     min_v = 0
     increment = 0.001
-    minimum = system.distanceToMars()
+    minimum = system.distance_to_mars()
     for i in range(tries):
         system = SolarSystem(3600, start_velocity + i * increment, Options.PROBE_RUN,"CelestialObjects")
         for j in range(updates):
             system.update_beeman()
-            if minimum >= system.distanceToMars():
-                minimum = system.distanceToMars()
+            if minimum >= system.distance_to_mars():
+                minimum = system.distance_to_mars()
                 min_v = start_velocity + i * increment
     return (minimum, min_v)
 
