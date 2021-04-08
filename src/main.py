@@ -24,7 +24,7 @@ def main():
     #Animation.periods_graph(10000*2)
     animate.scatter_plot(10000*2)
     #print(searchVelocityToMars(10000,1,11.551 * 10 ** 3))
-    #Animation.EnergyGraphComparisson(10000*2)
+    #Animation.energy_graph_comparisson(10000*2)
 
 
 def searchVelocityToMars(updates,tries,velocity):

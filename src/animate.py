@@ -118,7 +118,7 @@ class Animation(object):
         ax.bar_label(rects1, padding=3)
         plt.show()
     @staticmethod
-    def EnergyGraphComparisson(updates):
+    def energy_graph_comparisson(updates):
         """Function used to generate a comparison graph between Euler's method and Beeman's 
         to show conservation (or not conservation) of energy in both methods
         """

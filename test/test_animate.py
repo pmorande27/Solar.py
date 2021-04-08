@@ -51,14 +51,14 @@ class AnimateTest(unittest.TestCase):
         mock.assert_called()
     @mock.patch.object(matplotlib.pyplot,"show")
     def test_energy_graph_show(self,mock):
-        Animation.EnergyGraphComparisson(100)
+        Animation.energy_graph_comparisson(100)
         mock.assert_called_once()
     @mock.patch.object(matplotlib.pyplot,"show")
     @mock.patch.object(matplotlib.pyplot,"plot")
     @mock.patch.object(SolarSystem,"update_beeman")
     @mock.patch.object(SolarSystem,"update_euler")
     def test_energy_graph_update(self,mock,mock2,mock3,mock4):
-        Animation.EnergyGraphComparisson(100)
+        Animation.energy_graph_comparisson(100)
         self.assertEqual(100,mock.call_count)
         self.assertEqual(100,mock2.call_count)
         mock3.assert_called_once()
