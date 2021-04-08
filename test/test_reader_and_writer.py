@@ -23,7 +23,7 @@ class TestReader(unittest.TestCase):
         self.assertEqual(len(system.celestial_bodies),6)
     
     def test_Adding_Planet(self):
-        helperfunctions.add_planet("test",1,1,1,"test")
+        helperfunctions.add_planet("test",1,1,1,"blue","test")
         system = SolarSystem(1,1,Options.PROBE_RUN,"test")
         self.assertEqual(len(system.celestial_bodies),7)
         self.assertEqual(system.celestial_bodies[len(system.celestial_bodies)-1].name,"test")

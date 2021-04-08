@@ -9,9 +9,9 @@ import math
 class TestPlanets(unittest.TestCase):
 
     def setUp(self):
-        self.planetA = Planet("A",1,1,1,"Planet",1,1)
-        self.planetB = Planet("B",1,2,1,"Planet",1,1)
-        self.planetC = Planet("B",1,3,1,"Planet",1,1)
+        self.planetA = Planet("A",1,1,1,"Planet",1,1,"blue")
+        self.planetB = Planet("B",1,2,1,"Planet",1,1,"blue")
+        self.planetC = Planet("B",1,3,1,"Planet",1,1,"blue")
         
 
 
@@ -40,7 +40,7 @@ class TestPlanets(unittest.TestCase):
             self.assertEqual(expected_value[0],planets[i].acceleration_prev[0])
             self.assertEqual(expected_value[1],planets[i].acceleration_prev[1])
     def test_acceleration_exception(self):
-        planetD = Planet("D",1,1,1,"Planet",1,1)
+        planetD = Planet("D",1,1,1,"Planet",1,1,"blue")
         others = [planetD]
         with self.assertRaises(ValueError) as context:
              self.planetA.update_acceleration(others)   

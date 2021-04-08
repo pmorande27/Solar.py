@@ -14,8 +14,8 @@ class TestSolarSystem(unittest.TestCase):
         self.system_probe = SolarSystem(3600,10000,Options.PROBE_RUN,"CelestialObjects")
         self.system = SolarSystem(3600,10000,Options.NORMAL_RUN,"CelestialObjects")
         self.system_simple = SolarSystem(3600,10000,Options.NORMAL_RUN,"CelestialObjects")
-        planetA = Planet("B",1,1,1,"Planet",1,10000)
-        star = Planet("A",1,1,1,"Star",0,10000)
+        planetA = Planet("B",1,1,1,"Planet",1,10000,"blue")
+        star = Planet("A",1,1,1,"Star",0,10000,"blue")
         planets = [star,planetA]
         self.system_simple.celestial_bodies = planets
         self.system_simple.update_initial_acceleration()
@@ -61,9 +61,9 @@ class TestSolarSystem(unittest.TestCase):
         expected_value = 6.371*10**6
         self.assertEqual(expected_value,self.system_probe.distanceToEarth())
     def test_euler(self):
-        planetA = Planet("B",1,1,1,"Planet",1,10000)
-        star = Planet("A",1,1,1,"Star",0,10000)
-        planetB = Planet("B",1,2,1,"Planet",1,10000)
+        planetA = Planet("B",1,1,1,"Planet",1,10000,"blue")
+        star = Planet("A",1,1,1,"Star",0,10000,"blue")
+        planetB = Planet("B",1,2,1,"Planet",1,10000,"blue")
         planetB.position = np.array([-1.0,0.0])
         planetB.velocity = np.array([0.0,-planetA.velocity[1]])
         system = SolarSystem(3600,1000,Options.NORMAL_RUN,"CelestialObjects")
@@ -74,9 +74,9 @@ class TestSolarSystem(unittest.TestCase):
         self.assertEqual(0.0,star.acceleration[0])
         self.assertEqual(0.0,star.acceleration[1])
     def test_beeman(self):
-        planetA = Planet("B",1,1,1,"Planet",1,10000)
-        star = Planet("A",1,1,1,"Star",0,10000)
-        planetB = Planet("B",1,2,1,"Planet",1,10000)
+        planetA = Planet("B",1,1,1,"Planet",1,10000,"blue")
+        star = Planet("A",1,1,1,"Star",0,10000,"blue")
+        planetB = Planet("B",1,2,1,"Planet",1,10000,"blue")
         planetB.position = np.array([-1.0,0.0])
         planetB.velocity = np.array([0.0,-planetA.velocity[1]])
         system = SolarSystem(3600,1000,Options.NORMAL_RUN,"CelestialObjects")
