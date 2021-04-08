@@ -25,29 +25,6 @@ def main():
     animate.scatterplot(10000*2)
     #print(searchVelocityToMars(10000,1,11.551 * 10 ** 3))
     #EnergyGraphComparisson(10000*2)
-def periods_graph(updates):
-    system = SolarSystem(3600, 10.175 * 10 ** 3, Options.NORMAL_RUN,"CelestialObjects")
-    values = []
-    for i in range(updates):
-        system.update_beeman()
-    l = 0
-    actual_values = [88.0,224.7,365.2,687.0	]
-    for j in system.celestial_bodies:
-
-        if j.name != "Sun":
-            period = sum(j.periods)/(len(j.periods))
-            l+=1
-            values.append(period)
-    fig, ax = plt.subplots()
-    width = 0.35       # the width of the bars: can also be len(x) sequence
-    labels = ["Mercury","Venus","Earth","Mars"]
- 
-# Text on the top of each bar  
-    rects1 = ax.bar(labels, values, width)
-    ax.set_ylabel('Days')
-    ax.set_title('Average Orbital Periods')
-    ax.bar_label(rects1, padding=3)
-    plt.show()
 
 
 
