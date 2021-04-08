@@ -38,14 +38,14 @@ class Planet(object):
         # Case for the Probe
         elif type_of_object == "Probe":
             self.position = np.array([orbital_radius, 6.371 * 10 ** 6])
-            self.velocity =self.getInitialVelocity(self.position,29.8 * 10 ** 3 + vRelative)
+            self.velocity =self.get_initial_velocity(self.position,29.8 * 10 ** 3 + vRelative)
             self.sign = 1
         # Set-up acceleration and radius
         self.acceleration = np.array([0.0,0.0])
         self.acceleration_prev = np.array([0.0,0.0])
         self.simulated_radius = simulated_radius
     
-    def getInitialVelocity(self,position,velocity):
+    def get_initial_velocity(self,position,velocity):
         """Method used to get the correct tangential velocity of an object orbiting. This is calculated by
         taking the perpendicular vector to the position (constained in the orbit's plane) and multiply it by the
         modulus (norm) of the velocity.

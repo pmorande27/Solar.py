@@ -46,7 +46,7 @@ class SolarSystem(object):
         y_pos = math.sin(angle)
         mars.position = np.array([x_pos*mars.orbital_radius,y_pos*mars.orbital_radius])
         velocity = np.linalg.norm(mars.velocity)
-        mars.velocity = mars.getInitialVelocity(mars.position,velocity)
+        mars.velocity = mars.get_initial_velocity(mars.position,velocity)
 
     
     def distance_to_earth(self):
