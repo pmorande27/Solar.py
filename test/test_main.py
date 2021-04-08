@@ -19,7 +19,7 @@ class MainTest(unittest.TestCase):
         main.searchVelocityToMars(100,10,10)
         self.assertEqual(2.5*100*10+1,mock.call_count)
 
-    @mock.patch.object(Animation,"scatterplot")
+    @mock.patch.object(Animation,"scatter_plot")
     def test_main(self,mock):
         main.main()
         mock.assert_called_once()

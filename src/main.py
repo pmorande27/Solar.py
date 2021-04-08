@@ -22,7 +22,7 @@ def main():
     #11.56
     #animate.plot()
     #Animation.periods_graph(10000*2)
-    animate.scatterplot(10000*2)
+    animate.scatter_plot(10000*2)
     #print(searchVelocityToMars(10000,1,11.551 * 10 ** 3))
     #Animation.EnergyGraphComparisson(10000*2)
 

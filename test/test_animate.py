@@ -16,14 +16,14 @@ class AnimateTest(unittest.TestCase):
     def test_scatterplot_show(self,mock):
         self.system_probe = SolarSystem(3600,10000,Options.PROBE_RUN,"CelestialObjects")
         animate = Animation(self.system_probe)
-        animate.scatterplot(100)
+        animate.scatter_plot(100)
         mock.assert_called_once()
     @mock.patch.object(matplotlib.pyplot,"show")
     @mock.patch.object(SolarSystem,"update_beeman")
     def test_scatterplot_update(self,mock,mock2):
         self.system_probe = SolarSystem(3600,10000,Options.PROBE_RUN,"CelestialObjects")
         animate = Animation(self.system_probe)
-        animate.scatterplot(100)
+        animate.scatter_plot(100)
         mock.assert_called()
         self.assertEqual(mock.call_count,100)
     @mock.patch.object(matplotlib.pyplot,"show")
