@@ -6,7 +6,7 @@ import numpy as np
 class Planet(object):
     G = 6.67408 * 10 ** -11
 
-    def __init__(self, name, mass, orbital_radius, simulated_radius, type_of_object, central_mass, vRelative):
+    def __init__(self, name, mass, orbital_radius, simulated_radius, type_of_object, central_mass, vRelative,colour):
         """Constructor of the class used to initsile all the fields of the object. Such as the mass, the position, acceleration and velocity of the object.
         Args:
             name (string): Name of the Celestial body
@@ -23,6 +23,7 @@ class Planet(object):
         self.mass = mass
         self.type_of_object = type_of_object
         self.orbital_radius = orbital_radius
+        self.colour = colour
 
         # Case the object is supposed to be at the centre at the start
         if type_of_object == "Star":
