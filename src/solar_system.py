@@ -147,25 +147,8 @@ class SolarSystem(object):
 
         #self.file.write(str(energy)+"\n")
         self.time += self.time_step
-        if self.options == Options.CHECK_ALINGMENT:
-            initial_angle = angles[0]
-            aling = True
-            for i in range(1,len(angles)):
-                if not self.check_angles(initial_angle,angles[i],7):
-                    aling = False
-                    break
-            if aling and self.time/(3600*24*365)>1 :
-                print("Alingment "+ str(self.time/(3600*24*365)))
-
-
         return energy
 
-    def check_angles(self,angle_one,angle_two,window):
-        diff_one = (angle_one-window)%360
-        diff_two = (angle_one+window)%360
-        if (diff_one < diff_two):
-            return diff_one <= angle_two and angle_two <= diff_two
-        return diff_one <= angle_two or angle_two <= diff_two
     def distanceToMars(self):
         """function used to calculate the distance from the probe to mars at a given time.
         The Probe's position it is assumed to be the last in the list and mars the 5th one.
