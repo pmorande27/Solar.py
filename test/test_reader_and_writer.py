@@ -11,7 +11,7 @@ from options import Options
 class TestReader(unittest.TestCase):
 
     def setUp(self):
-        helperfunctions.writeFile("test")
+        helperfunctions.write_file("test")
 
 
     def tearDown(self):
