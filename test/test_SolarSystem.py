@@ -59,7 +59,7 @@ class TestSolarSystem(unittest.TestCase):
         self.assertEqual(potential+kinetic_energy,self.system.getEnergy())
     def test_distance_to_earth(self):
         expected_value = 6.371*10**6
-        self.assertEqual(expected_value,self.system_probe.distanceToEarth())
+        self.assertEqual(expected_value,self.system_probe.distance_to_earth())
     def test_euler(self):
         planetA = Planet("B",1,1,1,"Planet",1,10000,"blue")
         star = Planet("A",1,1,1,"Star",0,10000,"blue")

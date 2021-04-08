@@ -49,7 +49,7 @@ class SolarSystem(object):
         mars.velocity = mars.getInitialVelocity(mars.position,velocity)
 
     
-    def distanceToEarth(self):
+    def distance_to_earth(self):
         """function used to calculate the distance from the probe to Earth at a given time.
         The Probe's position it is assumed to be the last in the list and Earth the 4th one.
 
@@ -117,7 +117,7 @@ class SolarSystem(object):
         """
         if self.options==Options.PROBE_RUN:
             if self.initial:
-                if self.distanceToEarth() >= 10**8:
+                if self.distance_to_earth() >= 10**8:
                     self.initial = False
                     self.time_step = self.real_time_step
             elif self.distance_to_mars() >= 10**8 and not self.initial:
