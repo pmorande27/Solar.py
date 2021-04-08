@@ -2,7 +2,7 @@ import unittest
 import sys
 import os
 sys.path.append('./src/utils')
-import helperfunctions
+from writer import Writer
 sys.path.append('./src')
 from solar_system import SolarSystem
 from options import Options
@@ -14,9 +14,10 @@ class TestReader(unittest.TestCase):
     """
 
     def setUp(self):
+        self.write = Writer()
         """Initializes before each test the file "test.txt"
         """
-        helperfunctions.write_file("test")
+        self.write.write_file("test")
 
 
     def tearDown(self):
@@ -34,7 +35,7 @@ class TestReader(unittest.TestCase):
     def test_Adding_Planet(self):
         """Test used to check that the method add_planet can add a planet correctly into a system.
         """
-        helperfunctions.add_planet("test",1,1,1,"blue","test")
+        self.write.add_planet("test",1,1,1,"blue","test")
         system = SolarSystem(1,1,Options.PROBE_RUN,"test")
         self.assertEqual(len(system.celestial_bodies),7)
         self.assertEqual(system.celestial_bodies[len(system.celestial_bodies)-1].name,"test")

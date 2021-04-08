@@ -2,7 +2,7 @@ import unittest
 import sys
 import os
 sys.path.append('./src')
-from Planet import Planet
+from celestial_bodies import CelestialBody
 from options import Options
 import numpy as np
 import math
@@ -15,9 +15,9 @@ class TestPlanets(unittest.TestCase):
         it will be called before each test and will create three planets
         used in them.
         """
-        self.planetA = Planet("A",1,1,1,"Planet",1,1,"blue")
-        self.planetB = Planet("B",1,2,1,"Planet",1,1,"blue")
-        self.planetC = Planet("B",1,3,1,"Planet",1,1,"blue")
+        self.planetA = CelestialBody("A",1,1,1,"Planet",1,1,"blue")
+        self.planetB = CelestialBody("B",1,2,1,"Planet",1,1,"blue")
+        self.planetC = CelestialBody("B",1,3,1,"Planet",1,1,"blue")
 
     def test_velocities_initial(self):
         """Test that cheks that the velcoicites of the planets
@@ -25,7 +25,7 @@ class TestPlanets(unittest.TestCase):
         """
         planets = [self.planetA,self.planetB,self.planetC]
         for i in range(len(planets)):
-            velocity = [0,math.sqrt(Planet.G/(i+1))]
+            velocity = [0,math.sqrt(CelestialBody.G/(i+1))]
             self.assertEqual(velocity[0],planets[i].velocity[0])
             self.assertEqual(velocity[1],planets[i].velocity[1])
     def test_sign_start(self):
@@ -59,7 +59,7 @@ class TestPlanets(unittest.TestCase):
         """Test used to check that an exception is raised if the position
         of two planets is the same.
         """
-        planetD = Planet("D",1,1,1,"Planet",1,1,"blue")
+        planetD = CelestialBody("D",1,1,1,"Planet",1,1,"blue")
         others = [planetD]
         with self.assertRaises(ValueError) as context:
              self.planetA.update_acceleration(others)   
@@ -78,7 +78,7 @@ class TestPlanets(unittest.TestCase):
         """Test used to check that the acceleration of a planet is updated correctly.
         """
         others = [self.planetB,self.planetC]
-        expected_value = [Planet.G+Planet.G/4,0.0]
+        expected_value = [CelestialBody.G+CelestialBody.G/4,0.0]
         self.planetA.update_acceleration(others)
         self.assertEqual(expected_value[0],self.planetA.acceleration[0])
         self.assertEqual(expected_value[1],self.planetA.acceleration[1])
@@ -119,9 +119,9 @@ class TestPlanets(unittest.TestCase):
         """
         others = [self.planetC,self.planetB]
         self.planetA.update_acceleration(others)
-        acceleratation = [Planet.G+Planet.G/4,0.0]
+        acceleratation = [CelestialBody.G+CelestialBody.G/4,0.0]
         self.planetA.update_velocity_euler(100)
-        expected_value = np.array([0,math.sqrt(Planet.G/(1))]) + np.array([Planet.G+Planet.G/4,0.0])*100
+        expected_value = np.array([0,math.sqrt(CelestialBody.G/(1))]) + np.array([CelestialBody.G+CelestialBody.G/4,0.0])*100
         self.assertEqual(expected_value[0],self.planetA.velocity[0])
         self.assertEqual(expected_value[1],self.planetA.velocity[1])
     def test_update_velocity_beeman(self):
@@ -129,9 +129,9 @@ class TestPlanets(unittest.TestCase):
         is correct.
         """
         others = [self.planetC,self.planetB]
-        acceleratation = [Planet.G+Planet.G/4,0.0]
+        acceleratation = [CelestialBody.G+CelestialBody.G/4,0.0]
         self.planetA.update_velocity_beeman(100,others)
-        expected_value = np.array([0,math.sqrt(Planet.G/(1))]) + np.array([Planet.G+Planet.G/4,0.0])*100*2/6
+        expected_value = np.array([0,math.sqrt(CelestialBody.G/(1))]) + np.array([CelestialBody.G+CelestialBody.G/4,0.0])*100*2/6
         self.assertEqual(expected_value[0],self.planetA.velocity[0])
         self.assertEqual(expected_value[1],self.planetA.velocity[1])
     def test_update_position_euler(self):
@@ -139,7 +139,7 @@ class TestPlanets(unittest.TestCase):
         is correct.
         """
         initial_position = np.copy(self.planetA.position)
-        expected_value = np.array([1.0,0.0]) + np.array([0,math.sqrt(Planet.G/(1))])*100
+        expected_value = np.array([1.0,0.0]) + np.array([0,math.sqrt(CelestialBody.G/(1))])*100
         self.planetA.update_position_euler(100)
         self.assertEqual(expected_value[0],self.planetA.position[0])
         self.assertEqual(expected_value[1],self.planetA.position[1])
@@ -149,7 +149,7 @@ class TestPlanets(unittest.TestCase):
         """
         self.planetA.acceleration =np.array([-1.0,0.0])
         self.planetA.acceleration_prev = np.array([2.0,1.0])
-        expected_value = np.array([1.0,0.0]) + np.array([0,math.sqrt(Planet.G/(1))])*100 + (
+        expected_value = np.array([1.0,0.0]) + np.array([0,math.sqrt(CelestialBody.G/(1))])*100 + (
                     np.array([-1.0,0.0]) * 4 - np.array([2.0,1.0])) * 100 * 100 / 6
         self.planetA.update_position_beeman(100)
         self.assertEqual(expected_value[0],self.planetA.position[0])

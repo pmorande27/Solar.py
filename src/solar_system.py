@@ -4,7 +4,7 @@
 import json
 import math
 import numpy as np
-from Planet import Planet
+from celestial_bodies import CelestialBody
 from options import Options
 
 
@@ -44,6 +44,10 @@ class SolarSystem():
         """
         self.file.close()
     def set_up_mars(self):
+        """Sets mars to an appropriate angle for a Hohmann transfer orbit, 44 degrees. (Only used when options is
+        PROBE.RUN)
+        This will affect the first period of Mars on the simulation which should not be taken into account.
+        """
 
         mars = self.search_body("Mars")
         angle = 44*math.pi*2/360
@@ -66,25 +70,25 @@ class SolarSystem():
 
 
     def input_files(self, option,filename):
-        """Function used to read all the planets information from the supplied file
-        (CelestialObjecs.txt). It will intiatialize all the planets with the
+        """Function used to read all the boides information from the supplied file
+        (CelestialObjecs.txt). It will intiatialize all the bodies with the
         required information and it will append them to a list.
 
         Returns:
-            [Planet]: list of all the planets (object type Planet)
+            [CelestialBody]: list of all the boidies (object type CelestialBody)
         """
         planets = []
         path = "./data/"+filename
         with open(path) as json_file:
             data = json.load(json_file)
             for star in data['Star']:
-                planets.append(Planet(star['Name'], float(star['mass']),
+                planets.append(CelestialBody(star['Name'], float(star['mass']),
                 float(star['orbital_radius']),float(star['simulated_radius']), star['type'],
                 0, self.v_relative,star['colour']))
             for planet in data['Planets']:
                 if option != Options.PROBE_RUN and planet['Name'] =="Probe":
                     continue
-                planets.append(Planet(planet['Name'], float(planet['mass']),
+                planets.append(CelestialBody(planet['Name'], float(planet['mass']),
                 float(planet['orbital_radius']),float(planet['simulated_radius']),
                  planet['type'], float(star['mass']),
                 self.v_relative,planet['colour']))
@@ -101,8 +105,8 @@ class SolarSystem():
         """
         kinetic = 0
         for k in range(len(self.celestial_bodies)):
-            planet = self.celestial_bodies[k]
-            kinetic += planet.mass * 0.5 * np.linalg.norm(planet.velocity)** 2
+            body = self.celestial_bodies[k]
+            kinetic += body.mass * 0.5 * np.linalg.norm(body.velocity)** 2
         return kinetic
 
     def get_energy(self):
@@ -115,44 +119,43 @@ class SolarSystem():
         return self.get_potential_energy() + self.get_kinetic_energy()
 
     def update_beeman(self):
-        """Method used to update the position, velocity and acceleration of a list of planets using
-        Beeman's methods. First the positions of all the planets are updated, then the velocities
+        """Method used to update the position, velocity and acceleration of a list of CelestialBodies using
+        Beeman's methods. First the positions of all the bodies are updated, then the velocities
         of all of them, which also updates the accelerations. TO obtain good results it is
         important to do it in these 'blocks', otherwise the update on the position of one
-        planet could affect the update on the position of another planet
+        body could affect the update on the position of another body
         (if the updates were done in only one block)
         Returns:
             int: Energy of the system after the update
         """
+        # Variable Time-Step
         if self.options==Options.PROBE_RUN:
+            # Time-Step small at launch
             if self.initial:
                 if self.distance_to_earth() >= 10**8:
                     self.initial = False
                     self.time_step = self.real_time_step
+            # Time-step small when approaching Mars
             elif self.distance_to_mars() >= 10**8 and not self.initial:
                 self.time_step = self.real_time_step
             else:
                 self.time_step = 50
-                #print(self.distance_to_mars())
         self.updates += 1
-        angles = []
 
-        # Update acceleration and velocity of all planets from time t-timestep to time t
+        # Update positions of all planets from time t-timestep to time t
         for k in range(len(self.celestial_bodies)):
             others = self.celestial_bodies[:]
             planet = others.pop(k)
             planet.update_position_beeman(self.time_step)
-            if planet.name != "Sun":
-                angles.append(planet.get_angle())
 
-        # Update position of all planets from time t-timestep to time t
+        # Update velocities of all planets from time t-timestep to time t
         for k in range(len(self.celestial_bodies)):
             others = self.celestial_bodies[:]
             planet = others.pop(k)
             planet.update_velocity_beeman(self.time_step, others)
+        
         energy = self.get_energy()
-
-        #self.file.write(str(energy)+"\n")
+        self.file.write(str(energy)+"\n")
         self.time += self.time_step
         return energy
 
@@ -173,7 +176,7 @@ class SolarSystem():
                 return body
         raise ValueError("The given name is not in the actual list of bodies")
     def update_euler(self):
-        """Method used to update the position, velocity and acceleration of a list of planets
+        """Method used to update the position, velocity and acceleration of a list of bodies
         using Euler-Crommer Method. The accelerations are updated to time t,
         then all the velcoities are updated to time t + dt and finally all
         the positions are updated at time t+dt.

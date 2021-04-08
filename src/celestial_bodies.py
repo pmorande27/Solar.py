@@ -4,7 +4,7 @@ import math
 import numpy as np
 
 
-class Planet():
+class CelestialBody():
     """Class used to represent the different bodies present in the solar system,
     this includes planets, stars and satellites.
     """
@@ -40,7 +40,7 @@ class Planet():
         # Case for orbiting objects
         elif type_of_object == "Planet":
             self.position = np.array([orbital_radius, 0.0])
-            self.velocity =np.array([0.0,math.sqrt(Planet.G * central_mass / orbital_radius)])
+            self.velocity =np.array([0.0,math.sqrt(CelestialBody.G * central_mass / orbital_radius)])
             self.sign = 1
         # Case for the Probe
         elif type_of_object == "Probe":
@@ -88,7 +88,7 @@ class Planet():
         self.velocity += self.acceleration * time_step
 
     def update_position_beeman(self, time_step):
-        """Method used to update the position  of a Celestial Body sing Beeman's method.
+        """Method used to update the position  of a Celestial Body using Beeman's method.
         The position of the object at time t + dt depends on the position, the velocty and
         acceleration at time t and the acceleration at t -dt and the time between updates dt.
         This method also checks if a period has been completed, if so it will print to the console.
@@ -106,7 +106,7 @@ class Planet():
             if previous < self.sign:
                 time = self.time / (3600 * 24)
                 self.periods.append(time)
-                print("Orbital Period of " + self.name + " is " + str(time) + " days")
+                print("Orbital Period of " + self.name + " is " + str(time/365) + " years")
                 self.time = 0
 
     def update_velocity_beeman(self, time_step, others):
@@ -131,8 +131,10 @@ class Planet():
         should be negligible on the scale of the solar system).
 
         Args:
-            others ([Planet]): other Celestial Bodies that influence the total
+            others ([CelestialBody]): other Celestial Bodies that influence the total
                                acceleration of the given body.
+        Raises:
+            ValueError if the distance between two bodies is found to be 0.
         """
         # Restart acceleration of the object
         self.acceleration = np.array([0.0, 0.0])
@@ -147,7 +149,7 @@ class Planet():
             if np.linalg.norm(distances)==0:
                 raise ValueError("Division by Zero")
             self.acceleration += (distances / np.linalg.norm(distances)) * (
-                        others[i].mass * Planet.G / (np.linalg.norm(distances) ** 2))
+                        others[i].mass * CelestialBody.G / (np.linalg.norm(distances) ** 2))
 
     def get_y_sign(self):
         """Method used to inform the program if the y's position of the body is positive 
