@@ -1,4 +1,4 @@
-[![Pull-Request-Action](https://github.com/pmorande27/Planet_Orbital_Motion_Simualtion/actions/workflows/workfon_pull_request.yml/badge.svg?branch=master)](https://github.com/pmorande27/Planet_Orbital_Motion_Simualtion/actions/workflows/workfon_pull_request.yml)
+[![Pull-Request-Action](https://github.com/pmorande27/Planet_Orbital_Motion_Simualtion/actions/workflows/workfon_pull_request.yml/badge.svg)](https://github.com/pmorande27/Planet_Orbital_Motion_Simualtion/actions/workflows/workfon_pull_request.yml)
 [![codecov](https://codecov.io/gh/pmorande27/Planet_Orbital_Motion_Simualtion/branch/master/graph/badge.svg?token=8OBGZHK5RM)](https://codecov.io/gh/pmorande27/Planet_Orbital_Motion_Simualtion)
 [![CodeFactor](https://www.codefactor.io/repository/github/pmorande27/planet_orbital_motion_simualtion/badge?s=03f8a45c87cfeeedf14c40144c54351a01c8c765)](https://www.codefactor.io/repository/github/pmorande27/planet_orbital_motion_simualtion)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
