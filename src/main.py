@@ -57,20 +57,18 @@ def EnergyGraphComparisson(updates):
     to show conservation (or not conservation) of energy in both methods
     """
     system = SolarSystem(3600, 10.175 * 10 ** 3, Options.NORMAL_RUN,"CelestialObjects")
-    energy_1 = []
+    energy_1 = [system.getEnergy()]
     system2 = SolarSystem(3600, 10.175 * 10 ** 3, Options.NORMAL_RUN,"CelestialObjects")
     energy_2 = [system2.getEnergy()]
     iterate = updates
-    iterations = [(i+1)*3600 for i in range(iterate)]
+    iterations = [i*3600 for i in range(iterate+1)]
     for i in range(iterate):
         energy_1.append(system.update_beeman())
         energy_2.append(system2.update_euler())
     plt.xlabel('time(s)')
     plt.ylabel('Energy [J]')
-    plt.plot(iterations,energy_1,label="System With Beeman Updates")
-    plt.legend(loc="upper left")
+    plt.plot(iterations, energy_1, iterations, energy_2)
     plt.show()
-
 
 def searchVelocityToMars(updates,tries,velocity):
     """Function used to searc for the optimal velocity for the probe to approach mars
