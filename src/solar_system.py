@@ -36,7 +36,7 @@ class SolarSystem():
             self.initial = True
         self.time = 0
         self.file = open("./data/energy", "w")
-        #self.file.write(str(self.get_energy()) + "\n")
+        self.file.write(str(self.get_energy()) + "\n")
         self.updates = 0
 
     def __del__(self):
@@ -44,7 +44,8 @@ class SolarSystem():
         """
         self.file.close()
     def set_up_mars(self):
-        mars = self.celestial_bodies[4]
+
+        mars = self.search_body("Mars")
         angle = 44*math.pi*2/360
         x_pos = math.cos(angle)
         y_pos = math.sin(angle)
