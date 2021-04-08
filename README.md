@@ -7,8 +7,14 @@ While there exists an analytical solution for the 2-body problem, there is none 
 ## Installation
 The project was build using `Python 3.9.2`. To install all the dependencies please run `py pip install -r requirements.txt`
 ## Run
-To run the programe use the command `py /src/main.py` in the root directory
+To run the programe use the command `py /src/main.py` in the root directory. I would not recommend running the program in any other way as the imports use sys and they will probably fail if done otherwise.
 ## Tests
 To run the tests you may run `py -m unittest discover`. This command will run all tests, if you are in linux you might want to use `python` instead of `py`.
 Please do not try to run the tests outside the root directory.
 To get the coverage I recommend `coverage.py`. To install it use: `pip install coverage` once installed and in the root repository run: `coverage run -m source=../src unittest discover`, to generate the report you can either execute `coverage report -m` or `coverage html` to get the information in the terminal or as html respectively
+## Program
+By default the main.py file will run the animation with the probe apprahing Mars, other options that display data have been commented out, feel free to un-comment it to look at the data.
+<br/>
+The animation might appear to be stpped at the beginning and when the satellite approaches Mars, this is on purpose as a variable time-step has been implemented, when the probe is near a body it will automatically lower the time step to capture the correct behaviour of the probe.
+<br/>
+Do not add another star type body to the simulation or Probe as they will cause a division by zero. Feel free to add any planet that you want from the Solar system. you can use the funtion in writer class or add it by hand. If doing the latter please follow the given json format.
