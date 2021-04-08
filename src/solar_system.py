@@ -19,7 +19,7 @@ class SolarSystem(object):
             options (Options): Enum used to decide which type of simulation should be launched.
         """
         self.vRelative = vRelative
-        self.celestial_bodies = self.inputFiles(options,filename)
+        self.celestial_bodies = self.input_files(options,filename)
         self.update_initial_acceleration()
         self.options = options
         if (options !=Options.PROBE_RUN):
@@ -61,7 +61,7 @@ class SolarSystem(object):
         return  np.linalg.norm(-probe.position + earth.position)
 
 
-    def inputFiles(self, option,filename):
+    def input_files(self, option,filename):
         """Function used to read all the planets information from the supplied file (CelestialObjecs.txt).
         It will intiatialize all the planets with the required information and it will append them to a list.
 
