@@ -11,7 +11,7 @@ To run the programe use the command `py /src/main.py` in the root directory. I w
 ## Tests
 To run the tests you may run `py -m unittest discover`. This command will run all tests, if you are in linux you might want to use `python` instead of `py`.
 Please do not try to run the tests outside the root directory.
-To get the coverage I recommend `coverage.py`. To install it use: `pip install coverage` once installed and in the root repository run: `coverage run -m source=../src unittest discover`, to generate the report you can either execute `coverage report -m` or `coverage html` to get the information in the terminal or as html respectively
+To get the coverage I recommend `coverage.py`. To install it use: `pip install coverage` once installed and in the root repository run: `coverage run -m source=./src unittest discover`, to generate the report you can either execute `coverage report -m` or `coverage html` to get the information in the terminal or as html respectively
 ## Program
 By default the main.py file will run the animation with the probe apprahing Mars, other options that display data have been commented out, feel free to un-comment it to look at the data.
 <br/>
