@@ -5,6 +5,7 @@ import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 from options import Options
+import matplotlib
 
 
 def main():
@@ -20,12 +21,13 @@ def main():
     animate = Animation(system)
     #11.56
     #animate.plot()
-    #periods_graph(10000*10)
+    #periods_graph(10000*2)
     animate.scatterplot(10000*2)
     #print(searchVelocityToMars(10000,1,11.551 * 10 ** 3))
     #EnergyGraphComparisson(10000*2)
 def periods_graph(updates):
     system = SolarSystem(3600, 10.175 * 10 ** 3, Options.NORMAL_RUN,"CelestialObjects")
+    values = []
     for i in range(updates):
         system.update_beeman()
     l = 0
@@ -34,9 +36,18 @@ def periods_graph(updates):
 
         if j.name != "Sun":
             period = sum(j.periods)/(len(j.periods))
-            close_to = period/actual_values[l]
             l+=1
-            print("The average period of "+j.name+" is: "+ str(close_to))
+            values.append(period)
+    fig, ax = plt.subplots()
+    width = 0.35       # the width of the bars: can also be len(x) sequence
+    labels = ["Mercury","Venus","Earth","Mars"]
+ 
+# Text on the top of each bar  
+    rects1 = ax.bar(labels, values, width)
+    ax.set_ylabel('Days')
+    ax.set_title('Average Orbital Periods')
+    ax.bar_label(rects1, padding=3)
+    plt.show()
 
 
 
@@ -46,17 +57,18 @@ def EnergyGraphComparisson(updates):
     to show conservation (or not conservation) of energy in both methods
     """
     system = SolarSystem(3600, 10.175 * 10 ** 3, Options.NORMAL_RUN,"CelestialObjects")
-    energy_1 = [system.getEnergy()]
+    energy_1 = []
     system2 = SolarSystem(3600, 10.175 * 10 ** 3, Options.NORMAL_RUN,"CelestialObjects")
     energy_2 = [system2.getEnergy()]
     iterate = updates
-    iterations = [i*3600 for i in range(iterate+1)]
+    iterations = [(i+1)*3600 for i in range(iterate)]
     for i in range(iterate):
         energy_1.append(system.update_beeman())
         energy_2.append(system2.update_euler())
     plt.xlabel('time(s)')
     plt.ylabel('Energy [J]')
-    plt.plot(iterations, energy_1, iterations, energy_2)
+    plt.plot(iterations,energy_1,label="System With Beeman Updates")
+    plt.legend(loc="upper left")
     plt.show()
 
 
