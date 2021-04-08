@@ -17,4 +17,4 @@ By default the main.py file will run the animation with the probe apprahing Mars
 <br/>
 The animation might appear to be stpped at the beginning and when the satellite approaches Mars, this is on purpose as a variable time-step has been implemented, when the probe is near a body it will automatically lower the time step to capture the correct behaviour of the probe.
 <br/>
-Do not add another star type body to the simulation or Probe as they will cause a division by zero. Feel free to add any planet that you want from the Solar system. you can use the funtion in writer class or add it by hand. If doing the latter please follow the given json format.
+Do not add another star type body to the simulation or Probe as they will cause a division by zero. Feel free to add any planet that you want from the Solar system. you can use the funtion in writer class or add it by hand. If doing the latter please follow the given json format
