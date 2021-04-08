@@ -56,8 +56,9 @@ class SolarSystem(object):
         Returns:
             float: distance from the probe to Earth
         """
-        return  np.linalg.norm(-self.celestial_bodies[len(self.celestial_bodies) - 1].position+
-                               self.celestial_bodies[3].position)
+        earth = self.search_body("Earth")
+        probe = self.search_body("Probe")
+        return  np.linalg.norm(-probe.position + earth.position)
 
 
     def inputFiles(self, option,filename):
@@ -172,9 +173,15 @@ class SolarSystem(object):
         Returns:
             float: distance from the probe to mars
         """
-        return  np.linalg.norm(self.celestial_bodies[len(self.celestial_bodies) - 1].position-
-                               self.celestial_bodies[4].position)
-
+        mars = self.search_body("Mars")
+        probe = self.search_body("Probe")
+        return  np.linalg.norm(probe.position-
+                               mars.position)
+    def search_body(self,name):
+        for body in self.celestial_bodies:
+            if body.name == name:
+                return body
+        raise ValueError("The given name is not in the actual list of bodies, please make sure that the body has been added")
     def update_euler(self):
         """Method used to update the position, velocity and acceleration of a list of planets
         using Euler-Crommer Method. The accelerations are updated to time t, then all the velcoities are updated to 
