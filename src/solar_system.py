@@ -73,13 +73,13 @@ class SolarSystem(object):
             data = json.load(json_file)
             for star in data['Star']:
                 planets.append(Planet(star['Name'], float(star['mass']), float(star['orbital_radius']),
-                                      float(star['simulated_radius']), star['type'], 0, self.vRelative))
+                                      float(star['simulated_radius']), star['type'], 0, self.vRelative,star['colour']))
             for planet in data['Planets']:
                 if(option != Options.PROBE_RUN and planet['Name'] =="Probe"):
                     continue
                 planets.append(Planet(planet['Name'], float(planet['mass']), float(planet['orbital_radius']),
                                       float(planet['simulated_radius']), planet['type'], float(star['mass']),
-                                      self.vRelative))
+                                      self.vRelative,planet['colour']))
         return planets
 
     def getKineticenergy(self):
