@@ -1,5 +1,6 @@
 import sys
 sys.path.append("./src")
+from solar_system import SolarSystem
 from animate import Animation
 from solar_system import SolarSystem
 from options import Options
@@ -48,6 +49,19 @@ class AnimateTest(unittest.TestCase):
         animate = Animation(self.system_probe)
         animate.plot()
         mock.assert_called()
+    @mock.patch.object(matplotlib.pyplot,"show")
+    def test_energy_graph_show(self,mock):
+        Animation.EnergyGraphComparisson(100)
+        mock.assert_called_once()
+    @mock.patch.object(matplotlib.pyplot,"show")
+    @mock.patch.object(matplotlib.pyplot,"plot")
+    @mock.patch.object(SolarSystem,"update_beeman")
+    @mock.patch.object(SolarSystem,"update_euler")
+    def test_energy_graph_update(self,mock,mock2,mock3,mock4):
+        Animation.EnergyGraphComparisson(100)
+        self.assertEqual(100,mock.call_count)
+        self.assertEqual(100,mock2.call_count)
+        mock3.assert_called_once()
     
 
     

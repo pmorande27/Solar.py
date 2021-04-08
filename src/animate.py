@@ -4,6 +4,8 @@ import matplotlib.patches as patches
 import numpy as np
 import math
 from matplotlib.animation import FuncAnimation
+from solar_system import SolarSystem
+from options import Options
 class Animation(object):
     """Class used to create the animation of the solar System and to plot any needed graph
     """
@@ -114,6 +116,24 @@ class Animation(object):
         ax.set_ylabel('Days')
         ax.set_title('Average Orbital Periods')
         ax.bar_label(rects1, padding=3)
+        plt.show()
+    @staticmethod
+    def EnergyGraphComparisson(updates):
+        """Function used to generate a comparison graph between Euler's method and Beeman's 
+        to show conservation (or not conservation) of energy in both methods
+        """
+        system = SolarSystem(3600, 10.175 * 10 ** 3, Options.NORMAL_RUN,"CelestialObjects")
+        energy_1 = [system.getEnergy()]
+        system2 = SolarSystem(3600, 10.175 * 10 ** 3, Options.NORMAL_RUN,"CelestialObjects")
+        energy_2 = [system2.getEnergy()]
+        iterate = updates
+        iterations = [i*3600 for i in range(iterate+1)]
+        for i in range(iterate):
+            energy_1.append(system.update_beeman())
+            energy_2.append(system2.update_euler())
+        plt.xlabel('time(s)')
+        plt.ylabel('Energy [J]')
+        plt.plot(iterations, energy_1, iterations, energy_2)
         plt.show()
 
 
