@@ -29,13 +29,6 @@ class MainTest(unittest.TestCase):
         main.search_velocity_to_mars(100,10,10)
         self.assertEqual(2.5*100*10+1,mock.call_count)
 
-    @mock.patch.object(Animation,"scatter_plot")
-    def test_main(self,mock):
-        """Test used to check that the method scatter_plot is called once
-        in the main method.
-        """
-        main.main()
-        mock.assert_called_once()
 
 
     
