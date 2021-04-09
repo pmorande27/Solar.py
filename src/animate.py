@@ -40,6 +40,8 @@ class Animation():
             plt.plot(position_x,position_y,color=self.system.celestial_bodies[j].colour,
                     label =self.system.celestial_bodies[j].name )
         plt.legend(loc="upper left")
+        plt.xlabel('x[m]')
+        plt.ylabel('y[m]')
         plt.show()
 
 
@@ -96,8 +98,8 @@ class Animation():
         # Create animation
         anim = FuncAnimation(fig, self.animate, init_func=self.init, frames=10000000,
                             repeat=False, interval=0, blit=True)
-        plt.xlabel('x')
-        plt.ylabel('y')
+        plt.xlabel('x[m]')
+        plt.ylabel('y[m]')
         plt.show()
     @staticmethod
     def periods_graph(updates):
