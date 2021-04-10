@@ -154,6 +154,13 @@ class TestPlanets(unittest.TestCase):
         self.planetA.update_position_beeman(100)
         self.assertEqual(expected_value[0],self.planetA.position[0])
         self.assertEqual(expected_value[1],self.planetA.position[1])
+    def test_angle(self):
+        self.assertEqual(self.planetA.get_angle(),0)
+        self.planetA.position = np.array([0,100])
+        self.assertEqual(self.planetA.get_angle(),90)
+        self.planetA.position = np.array([0,-100])
+        self.assertEqual(self.planetA.get_angle(),270)
+
 
 
 if __name__ == "__main__":
