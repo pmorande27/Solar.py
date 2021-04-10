@@ -116,4 +116,22 @@ class TestSolarSystem(unittest.TestCase):
         for i in range(1000):
             self.system_probe.update_beeman()
         self.assertEqual(self.system_probe.time_step,3600)
+    def test_search(self):
+        for body in self.system.celestial_bodies:
+            self.assertEqual(self.system.search_body(body.name).name,body.name)
+    def test_exception_search(self):
+        with self.assertRaises(ValueError) as context:
+            self.system.search_body("Probe")   
+        self.assertTrue("The given name is not in the actual list of bodies" in str(context.exception))
+    def test_variable_time_step(self):
+        self.assertEqual(self.system_probe.time_step, 20)
+        self.system_probe.initial = False
+        self.system_probe.search_body("Probe").position = np.array([1000.0,0.0])
+        self.system_probe.update_beeman()
+        self.assertEqual(self.system_probe.time_step, 3600)
 
+
+
+
+
+    
