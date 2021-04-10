@@ -90,6 +90,31 @@ class AnimateTest(unittest.TestCase):
         self.assertEqual(100,mock.call_count)
         self.assertEqual(100,mock2.call_count)
         mock3.assert_called_once()
+    @mock.patch.object(matplotlib.pyplot,"show")
+    @mock.patch.object(matplotlib.pyplot,"plot")
+    @mock.patch.object(SolarSystem,"update_beeman")
+    def test_period_graph_update(self,beeman,plot,show):
+        try:
+            system = SolarSystem(3600, 10.175 * 10 ** 3, Options.NORMAL_RUN,"CelestialObjects")
+
+            Animation.periods_graph(100,system)
+        except ZeroDivisionError as err:
+            self.assertEqual(100,beeman.call_count)
+    @mock.patch.object(matplotlib.pyplot,"show")
+    @mock.patch.object(matplotlib.pyplot,"plot")
+    def test_period_graph_plot(self,plot,show):
+        system = SolarSystem(1000000, 10.175 * 10 ** 3, Options.NORMAL_RUN,"CelestialObjects")
+        system.celestial_bodies = system.celestial_bodies[0:2]
+        Animation.periods_graph(10,system)
+        show.assert_called_once()
+
+        
+
+
+
+
+
+
     
 
     
