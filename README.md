@@ -5,9 +5,9 @@
 ## Introduction
 While there exists an analytical solution for the 2-body problem, there is none for the 3-body problem or the N-body problem. This programe simulates the behaviour and the evolutions of the Planets in the Solar System. As no exact solution exists for this problem numerical methods have been used. For the purpose of the animation, the method used it known as the Beeman's Algorithm which is a symplectic integrator (Based on the Hamiltonian).
 ## Installation
-The project was build using `Python 3.9.2`. To install all the dependencies please run `py pip install -r requirements.txt`
+The project was build using `Python 3.9.2`. To install all the dependencies please run `py pip install -r requirement.txt`
 ## Run
-To run the programe use the command `py /src/main.py` in the root directory. I would not recommend running the program in any other way as the imports use sys and they will probably fail if done otherwise.
+To run the programe use the command `py ./src/main.py` in the root directory. I would not recommend running the program in any other way as the imports use sys and they will probably fail if done otherwise.
 ## Tests
 To run the tests you may run `py -m unittest discover`. This command will run all tests, if you are in linux you might want to use `python` instead of `py`.
 Please do not try to run the tests outside the root directory.
