@@ -3,6 +3,7 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/pmorande27/solar.py/badge)](https://www.codefactor.io/repository/github/pmorande27/solar.py)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 ## Introduction
+Solar.py is a python simulation of the Solar System, which uses a symplectic integrator to predict the next positions of all the bodies of the system. </br>
 While there exists an analytical solution for the 2-body problem, there is none for the 3-body problem or the N-body problem. This programe simulates the behaviour and the evolutions of the Planets in the Solar System. As no exact solution exists for this problem numerical methods have been used. For the purpose of the animation, the method used it known as the Beeman's Algorithm which is a symplectic integrator (Based on the Hamiltonian).
 ## Installation
 The project was build using `Python 3.9.2`. To install all the dependencies please run `py pip install -r requirement.txt`
