@@ -1,5 +1,5 @@
 [![build](https://github.com/pmorande27/Solar.py/actions/workflows/build_action.yml/badge.svg?branch=master)](https://github.com/pmorande27/Solar.py/actions/workflows/build_action.yml)
-[![codecov](https://codecov.io/gh/pmorande27/Planet_Orbital_Motion_Simualtion/branch/master/graph/badge.svg?token=8OBGZHK5RM)](https://codecov.io/gh/pmorande27/Planet_Orbital_Motion_Simualtion)
+[![codecov](https://codecov.io/gh/pmorande27/Solar.py/branch/master/graph/badge.svg?token=8OBGZHK5RM)](https://codecov.io/gh/pmorande27/Solar.py)
 [![CodeFactor](https://www.codefactor.io/repository/github/pmorande27/solar.py/badge)](https://www.codefactor.io/repository/github/pmorande27/solar.py)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 ## Introduction
