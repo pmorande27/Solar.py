@@ -38,6 +38,14 @@ class SolarSystem():
         self.file = open("./data/energy", "w")
         self.file.write(str(self.get_energy()) + "\n")
         self.updates = 0
+        self.centre_of_mass_corrections()
+    def  centre_of_mass_corrections(self):
+        c_m_momentum = sum([body.mass*body.velocity for body in self.celestial_bodies])
+        correction = c_m_momentum/(sum([body.mass for body in self.celestial_bodies]))
+        print(correction)
+        for body in self.celestial_bodies:
+            body.velocity-= correction
+
 
     def __del__(self):
         """Deconstructor of the class, used to close the file.
