@@ -20,6 +20,7 @@ class Writer():
         earth = CelestialBody("Earth",5.972 *10**24,149597870.691*10**3,2*500000000,"Planet"
                         ,1.989 * 10**30,0,"blue")
         mars = CelestialBody("Mars",6.39 *10**23,228 *10**9,2*500000000,"Planet",1.989 * 10**30,0,"red")
+        jupiter =  CelestialBody("Jupiter",1.899*10**27,778412026*10**3,2*500000000,"Planet",1.989 * 10**30,0,"green")
         probe = CelestialBody("Probe",1,149597870.691*10**3,2*500000000,"Probe",1.989 * 10**30,0,"black")
         list_of_bodies =[sun,mercury,venus,earth,mars,probe]
         data = {}
