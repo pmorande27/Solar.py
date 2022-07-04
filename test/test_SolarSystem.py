@@ -11,9 +11,9 @@ class TestSolarSystem(unittest.TestCase):
     def setUp(self):
         """Method that is executed begore each test and that loads all the systems used
         """
-        self.system_probe = SolarSystem(3600,10000,Options.PROBE_RUN,"CelestialObjects")
-        self.system = SolarSystem(3600,10000,Options.NORMAL_RUN,"CelestialObjects")
-        self.system_simple = SolarSystem(3600,10000,Options.NORMAL_RUN,"CelestialObjects")
+        self.system_probe = SolarSystem(3600,10000,Options.PROBE_RUN,"CelestialObjects3")
+        self.system = SolarSystem(3600,10000,Options.NORMAL_RUN,"CelestialObjects3")
+        self.system_simple = SolarSystem(3600,10000,Options.NORMAL_RUN,"CelestialObjects3")
         planetA = CelestialBody("B",1,1,1,"Planet",1,10000,"blue")
         star = CelestialBody("A",1,1,1,"Star",0,10000,"blue")
         planets = [star,planetA]
