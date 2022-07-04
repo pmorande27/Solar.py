@@ -36,6 +36,7 @@ class SolarSystem():
             self.initial = True
         self.time = 0
         self.file = open("./data/energy", "w")
+        self.traj = open('./data/traj.xyz','w')
         self.file.write(str(self.get_energy()) + "\n")
         self.updates = 0
         self.centre_of_mass_corrections()
@@ -101,7 +102,15 @@ class SolarSystem():
                  planet['type'], float(star['mass']),
                 self.v_relative,planet['colour']))
         return planets
+    def write_positions(self,iteration):
+        self.traj.write(str(len(self.celestial_bodies))+ "\n")
+        self.traj.write("Point = "+str(iteration)+ "\n")
+        for body in self.celestial_bodies:
+            phrase = "Fr" + " " + str(body.position[0]/(1.496*10**11)) + " " + str(body.position[1]/(1.496*10**11)) + " 0"
+            self.traj.write(phrase+"\n")
 
+
+        pass
     def get_kinetic_energy(self):
         """Function used to obtain the kinetic energy of the system at a given time.
         The Kinetic energy of the system is calculated by iterating through all the bodies
@@ -165,6 +174,7 @@ class SolarSystem():
         energy = self.get_energy()
         self.file.write(str(energy)+"\n")
         self.time += self.time_step
+        self.write_positions(self.updates)
         return energy
 
     def distance_to_mars(self):
