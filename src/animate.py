@@ -24,10 +24,10 @@ class Animation():
         """
         positions = [[] for x in range(len(self.system.celestial_bodies))]
         axis = plt.axes()
-        xmin = - 3 * 10 ** 11
-        xmax = 3 * 10 ** 11
-        ymin = - 3 * 10 ** 11
-        ymax = 3 * 10 ** 11
+        xmin = -10 * 10 ** 11
+        xmax = 10 * 10 ** 11
+        ymin = - 10 * 10 ** 11
+        ymax = 10 * 10 ** 11
         axis.set_xlim(xmin - 1, xmax)
         axis.set_ylim(ymin - 1, ymax)
         for updates in range(max_updates):
@@ -51,7 +51,7 @@ class Animation():
         # initialiser for animator
         return self.patches
 
-    def animate(self, i):
+    def animate(self, i,text):
         """Main function of the class, it iterates over the planets and it updates the position
         of all of them, it will add those new positions to the animation (patches)
         Args:
@@ -64,6 +64,7 @@ class Animation():
         self.updates+=1
         #print(self.updates)
         planets = self.system.celestial_bodies
+        text.set_text("# of operations: {}".format(i))
         # update the position of the circle
         for j in range(len( planets)):
             self.patches[j].center = (planets[j].position[0], planets[j].position[1])
@@ -76,14 +77,15 @@ class Animation():
         # set up plot
         fig = plt.figure()
         axis = plt.axes()
-        xmin = - 4 * 10 ** 11
-        xmax = 4 * 10 ** 11
-        ymin = - 4 * 10 ** 11
-        ymax = 4 * 10 ** 11
+        xmin = - 10 * 10 ** 11
+        xmax = 10 * 10 ** 11
+        ymin = - 10 * 10 ** 11
+        ymax = 10 * 10 ** 11
         axis.set_xlim(xmin - 1, xmax)
         axis.set_ylim(ymin - 1, ymax)
         self.patches = []
         planets = self.system.celestial_bodies
+        text = axis.text(0.02, 0.95, "", transform=axis.transAxes)
         #Get position of the planets and assing it to the circles.
         for planet in range(len(planets)):
             body = plt.Circle((planets[planet].position[0], planets[planet].position[1]),
@@ -96,7 +98,7 @@ class Animation():
             axis.add_patch(self.patches[i])
 
         # Create animation
-        anim = FuncAnimation(fig, self.animate, init_func=self.init, frames=10000000,
+        anim = FuncAnimation(fig, self.animate,fargs =[text], init_func=self.init, frames=10000000,
                             repeat=False, interval=0, blit=True)
         plt.xlabel('x[m]')
         plt.ylabel('y[m]')
